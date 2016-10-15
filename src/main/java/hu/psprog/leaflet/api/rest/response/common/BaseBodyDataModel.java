@@ -11,6 +11,10 @@ import java.util.List;
  */
 public abstract class BaseBodyDataModel extends HashMap<String, Object> {
 
+    protected BaseBodyDataModel() {
+        // prevent direct initialization
+    }
+
     public void addSingleNode(String key, String value) {
         this.put(key, value);
     }

@@ -15,7 +15,7 @@ public class BaseLayoutDataModel extends BaseBodyDataModel {
     private static final String ERROR = "errors"; // any validation error messages, exceptions, etc. (type VALIDATION/EXCEPTION + message maybe?)
     private static final String FOOTER = "footer"; // anything that should be in footer
 
-    public BaseLayoutDataModel() {
+    protected BaseLayoutDataModel() {
         // prevent direct initialization
     }
 
@@ -32,7 +32,7 @@ public class BaseLayoutDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public Builder withBody(BaseLayoutDataModel body) {
+        public Builder withBody(BaseBodyDataModel body) {
             baseLayoutDataModel.addSingleNode(BODY, body);
             return this;
         }

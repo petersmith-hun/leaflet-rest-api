@@ -11,7 +11,7 @@ public class TagDataModel extends BaseBodyDataModel {
 
     private static final String TITLE = "title";
 
-    public TagDataModel() {
+    private TagDataModel() {
         // prevent direct initialization
     }
 

@@ -13,7 +13,7 @@ public class EntryDataModel extends BaseBodyDataModel {
     private static final String USER = "user";
     private static final String TAGS = "tags";
 
-    public EntryDataModel() {
+    private EntryDataModel() {
         // prevent direct initialization
     }
 

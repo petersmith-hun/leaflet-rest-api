@@ -12,7 +12,7 @@ public class UserDataModel extends BaseBodyDataModel {
     private static final String ID = "id";
     private static final String USERNAME = "username";
 
-    public UserDataModel() {
+    protected UserDataModel() {
         // prevent direct initialization
     }
 

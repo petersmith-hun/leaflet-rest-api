@@ -12,7 +12,7 @@ public class EntryListLayoutDataModel extends BaseLayoutDataModel {
     private static final String ENTRIES = "entries";
     private static final String CATEGORIES = "categories";
 
-    public EntryListLayoutDataModel() {
+    private EntryListLayoutDataModel() {
         // prevent direct initialization
     }
 
