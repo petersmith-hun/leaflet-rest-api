@@ -1,6 +1,6 @@
 package hu.psprog.leaflet.api.rest.response.entity;
 
-import hu.psprog.leaflet.api.rest.common.BaseBodyDataModel;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 
 /**
  * Basic user data response model.
@@ -11,6 +11,10 @@ public class UserDataModel extends BaseBodyDataModel {
 
     private static final String ID = "id";
     private static final String USERNAME = "username";
+
+    public UserDataModel() {
+        // prevent direct initialization
+    }
 
     public static class Builder {
 

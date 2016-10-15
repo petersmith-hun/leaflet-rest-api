@@ -13,6 +13,10 @@ public class ExtendedUserDataModel extends UserDataModel {
     private static final String CREATED = "created";
     private static final String LAST_LOGIN = "lastLogin";
 
+    public ExtendedUserDataModel() {
+        // prevent direct initialization
+    }
+
     public static class Builder extends UserDataModel.Builder {
 
         public Builder withEmail(String email) {

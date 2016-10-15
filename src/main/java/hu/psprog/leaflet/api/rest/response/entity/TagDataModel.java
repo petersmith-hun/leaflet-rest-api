@@ -1,13 +1,19 @@
 package hu.psprog.leaflet.api.rest.response.entity;
 
-import hu.psprog.leaflet.api.rest.common.BaseBodyDataModel;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 
 /**
+ * Response data model for tags.
+ *
  * @author Peter Smith
  */
-public final class TagDataModel extends BaseBodyDataModel {
+public class TagDataModel extends BaseBodyDataModel {
 
     private static final String TITLE = "title";
+
+    public TagDataModel() {
+        // prevent direct initialization
+    }
 
     public static class Builder {
 

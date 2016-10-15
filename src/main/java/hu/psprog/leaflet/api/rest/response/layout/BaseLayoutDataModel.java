@@ -1,8 +1,10 @@
 package hu.psprog.leaflet.api.rest.response.layout;
 
-import hu.psprog.leaflet.api.rest.common.BaseBodyDataModel;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 
 /**
+ * Default "layout" response data model.
+ *
  * @author Peter Smith
  */
 public class BaseLayoutDataModel extends BaseBodyDataModel {
@@ -12,6 +14,10 @@ public class BaseLayoutDataModel extends BaseBodyDataModel {
     private static final String BODY = "body";
     private static final String ERROR = "errors"; // any validation error messages, exceptions, etc. (type VALIDATION/EXCEPTION + message maybe?)
     private static final String FOOTER = "footer"; // anything that should be in footer
+
+    public BaseLayoutDataModel() {
+        // prevent direct initialization
+    }
 
     public static class Builder {
 
