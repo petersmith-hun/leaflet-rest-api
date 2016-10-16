@@ -9,13 +9,13 @@ public class ErrorMessageDataModel extends BaseBodyDataModel {
 
     private static final String MESSAGE = "message";
 
-    private ErrorMessageDataModel() {
+    protected ErrorMessageDataModel() {
         // prevent direct initialization
     }
 
     public static class Builder {
 
-        private ErrorMessageDataModel errorMessageDataModel;
+        protected ErrorMessageDataModel errorMessageDataModel;
 
         public Builder() {
             errorMessageDataModel = new ErrorMessageDataModel();
