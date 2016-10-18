@@ -5,14 +5,15 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Locale;
 
 /**
- * Request model for initializing user database with the first (admin) account.
+ * Request model for updating user profile fields.
  *
  * @author Peter Smith
  */
-public class UserInitializeRequestModel extends UserPasswordRequestModel {
+public class UpdateProfileRequestModel implements Serializable {
 
     @NotNull
     @NotEmpty
@@ -27,10 +28,6 @@ public class UserInitializeRequestModel extends UserPasswordRequestModel {
 
     @NotNull
     private Locale defaultLocale;
-
-    public UserInitializeRequestModel() {
-        // Serializable
-    }
 
     public String getUsername() {
         return username;
