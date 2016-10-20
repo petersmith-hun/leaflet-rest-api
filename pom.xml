@@ -6,7 +6,7 @@
 
     <groupId>hu.psprog.leaflet</groupId>
     <artifactId>leaflet-rest-api</artifactId>
-    <version>0.1.9</version>
+    <version>0.1.10</version>
 
     <properties>
         <!-- Java environment version -->
@@ -42,11 +42,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons.lang.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
