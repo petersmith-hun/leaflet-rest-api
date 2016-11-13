@@ -1,4 +1,4 @@
-package hu.psprog.leaflet.api.rest.response.entity;
+package hu.psprog.leaflet.api.rest.response.user;
 
 /**
  * Extended user details data response model.

@@ -6,7 +6,7 @@
 
     <groupId>hu.psprog.leaflet</groupId>
     <artifactId>leaflet-rest-api</artifactId>
-    <version>0.1.10</version>
+    <version>0.2.0</version>
 
     <properties>
         <!-- Java environment version -->
@@ -23,6 +23,7 @@
         <!-- test dependencies -->
         <junit.version>4.12</junit.version>
         <jackson-databind.version>2.8.3</jackson-databind.version>
+        <spring-webmvc.version>4.3.3.RELEASE</spring-webmvc.version>
     </properties>
 
     <dependencies>

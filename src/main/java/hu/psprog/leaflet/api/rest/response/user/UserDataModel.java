@@ -1,4 +1,4 @@
-package hu.psprog.leaflet.api.rest.response.entity;
+package hu.psprog.leaflet.api.rest.response.user;
 
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 

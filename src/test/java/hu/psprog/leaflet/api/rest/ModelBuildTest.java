@@ -2,11 +2,11 @@ package hu.psprog.leaflet.api.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hu.psprog.leaflet.api.rest.response.entity.EntryDataModel;
-import hu.psprog.leaflet.api.rest.response.entity.ExtendedUserDataModel;
-import hu.psprog.leaflet.api.rest.response.entity.TagDataModel;
-import hu.psprog.leaflet.api.rest.response.layout.BaseLayoutDataModel;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
+import hu.psprog.leaflet.api.rest.response.entry.EntryDataModel;
+import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.layout.EntryListLayoutDataModel;
+import hu.psprog.leaflet.api.rest.response.user.ExtendedUserDataModel;
 import org.junit.Test;
 
 /**
@@ -40,9 +40,8 @@ public class ModelBuildTest {
                         .build())
                 .build();
 
-        BaseLayoutDataModel entryListLayoutDataModel = new EntryListLayoutDataModel.Builder()
+        BaseBodyDataModel entryListLayoutDataModel = new EntryListLayoutDataModel.Builder()
                 .withEntry(entryDataModel)
-                .withMenu("Teszt")
                 .build();
 
         String result = objectMapper.writeValueAsString(entryListLayoutDataModel);
