@@ -14,9 +14,6 @@ public class EntryCreateRequestModel extends EntryUpdateRequestModel {
     @Min(1)
     private Long userID;
 
-    @NotNull
-    private EntryInitialStatus status;
-
     public EntryCreateRequestModel() {
         // Serializable
     }
@@ -27,13 +24,5 @@ public class EntryCreateRequestModel extends EntryUpdateRequestModel {
 
     public void setUserID(Long userID) {
         this.userID = userID;
-    }
-
-    public EntryInitialStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(EntryInitialStatus status) {
-        this.status = status;
     }
 }
