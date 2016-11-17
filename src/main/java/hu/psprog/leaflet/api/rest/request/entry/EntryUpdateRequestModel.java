@@ -43,6 +43,9 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
     @NotNull
     private boolean enabled;
 
+    @NotNull
+    private EntryInitialStatus status;
+
     public EntryUpdateRequestModel() {
         // Serializable
     }
@@ -101,5 +104,13 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public EntryInitialStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EntryInitialStatus status) {
+        this.status = status;
     }
 }
