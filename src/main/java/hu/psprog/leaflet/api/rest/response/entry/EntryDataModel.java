@@ -11,6 +11,7 @@ import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
  */
 public class EntryDataModel extends BaseBodyDataModel {
 
+    private static final String ID = "id";
     private static final String TITLE = "title";
     private static final String LINK = "link";
     private static final String PROLOGUE = "prologue";
@@ -28,6 +29,11 @@ public class EntryDataModel extends BaseBodyDataModel {
 
         public Builder() {
             this.entryDataModel = new EntryDataModel();
+        }
+
+        public Builder withID(Long id) {
+            this.entryDataModel.addSingleNode(ID, id);
+            return this;
         }
 
         public Builder withTitle(String title) {
