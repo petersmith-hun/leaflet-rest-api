@@ -12,6 +12,7 @@ public class ExtendedUserDataModel extends UserDataModel {
     private static final String LOCALE = "locale";
     private static final String CREATED = "created";
     private static final String LAST_LOGIN = "lastLogin";
+    private static final String LAST_MODIFIED = "lastModified";
 
     private ExtendedUserDataModel() {
         // prevent direct initialization
@@ -41,6 +42,11 @@ public class ExtendedUserDataModel extends UserDataModel {
 
         public Builder withLastLogin(String lastLogin) {
             userDataModel.addSingleNode(LAST_LOGIN, lastLogin);
+            return this;
+        }
+
+        public Builder withLastModified(String lastModified) {
+            userDataModel.addSingleNode(LAST_MODIFIED, lastModified);
             return this;
         }
     }
