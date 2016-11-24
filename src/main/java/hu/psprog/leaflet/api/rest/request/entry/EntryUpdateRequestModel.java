@@ -34,6 +34,10 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
     private String content;
 
     @NotNull
+    @NotEmpty
+    private String rawContent;
+
+    @NotNull
     @Min(1)
     private Long categoryID;
 
@@ -80,6 +84,14 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getRawContent() {
+        return rawContent;
+    }
+
+    public void setRawContent(String rawContent) {
+        this.rawContent = rawContent;
     }
 
     public Long getCategoryID() {
