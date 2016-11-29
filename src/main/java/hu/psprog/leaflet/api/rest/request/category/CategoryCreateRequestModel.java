@@ -4,13 +4,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * Request model for creating a category.
  *
  * @author Peter Smith
  */
-public class CategoryCreateRequestModel {
+public class CategoryCreateRequestModel implements Serializable {
 
     @NotNull
     @NotEmpty

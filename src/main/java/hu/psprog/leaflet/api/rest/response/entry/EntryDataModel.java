@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
+import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
@@ -17,6 +18,7 @@ public class EntryDataModel extends BaseBodyDataModel {
     private static final String PROLOGUE = "prologue";
     private static final String USER = "user";
     private static final String TAGS = "tags";
+    private static final String CATEGORY = "category";
     private static final String CREATED = "created";
 
     protected EntryDataModel() {
@@ -58,6 +60,11 @@ public class EntryDataModel extends BaseBodyDataModel {
 
         public Builder withTag(TagDataModel tag) {
             entryDataModel.addListItemNode(TAGS, tag);
+            return this;
+        }
+
+        public Builder withCategory(CategoryDataModel category) {
+            entryDataModel.addSingleNode(CATEGORY, category);
             return this;
         }
 
