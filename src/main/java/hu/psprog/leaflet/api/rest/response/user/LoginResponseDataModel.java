@@ -9,32 +9,48 @@ import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
  */
 public class LoginResponseDataModel extends BaseBodyDataModel {
 
-    private static final String STATUS = "status";
-    private static final String TOKEN = "token";
-
-    private LoginResponseDataModel() {
-        // prevent direct initialization
+    public enum AuthenticationResult {
+        AUTH_SUCCESS,
+        INVALID_CREDENTIALS
     }
 
-    public static class Builder {
+    private AuthenticationResult status;
+    private String token;
 
-        private LoginResponseDataModel loginResponseDataModel;
+    public void setStatus(AuthenticationResult status) {
+        this.status = status;
+    }
 
-        public Builder() {
-            loginResponseDataModel = new LoginResponseDataModel();
-        }
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-        public Builder withStatus(String status) {
-            loginResponseDataModel.addSingleNode(STATUS, status);
+    public AuthenticationResult getStatus() {
+        return status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public static final class Builder {
+        private AuthenticationResult status;
+        private String token;
+
+        public Builder withStatus(AuthenticationResult status) {
+            this.status = status;
             return this;
         }
 
         public Builder withToken(String token) {
-            loginResponseDataModel.addSingleNode(TOKEN, token);
+            this.token = token;
             return this;
         }
 
         public LoginResponseDataModel build() {
+            LoginResponseDataModel loginResponseDataModel = new LoginResponseDataModel();
+            loginResponseDataModel.status = this.status;
+            loginResponseDataModel.token = this.token;
             return loginResponseDataModel;
         }
     }

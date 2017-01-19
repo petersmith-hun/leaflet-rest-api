@@ -9,32 +9,43 @@ import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
  */
 public class CategoryDataModel extends BaseBodyDataModel {
 
-    private static final String ID = "id";
-    private static final String TITLE = "title";
+    long id;
+    String title;
 
-    protected CategoryDataModel() {
-        // prevent direct initialization
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public static class Builder {
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        protected CategoryDataModel categoryDataModel;
+    public long getId() {
+        return id;
+    }
 
-        public Builder() {
-            categoryDataModel = new CategoryDataModel();
-        }
+    public String getTitle() {
+        return title;
+    }
 
-        public Builder withID(Long id) {
-            categoryDataModel.addSingleNode(ID, id);
+    public static final class Builder {
+        private long id;
+        private String title;
+
+        public Builder withID(long id) {
+            this.id = id;
             return this;
         }
 
         public Builder withTitle(String title) {
-            categoryDataModel.addSingleNode(TITLE, title);
+            this.title = title;
             return this;
         }
 
         public CategoryDataModel build() {
+            CategoryDataModel categoryDataModel = new CategoryDataModel();
+            categoryDataModel.title = this.title;
+            categoryDataModel.id = this.id;
             return categoryDataModel;
         }
     }

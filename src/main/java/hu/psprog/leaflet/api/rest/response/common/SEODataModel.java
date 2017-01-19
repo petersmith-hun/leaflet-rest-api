@@ -7,45 +7,76 @@ package hu.psprog.leaflet.api.rest.response.common;
  */
 public class SEODataModel extends BaseBodyDataModel {
 
-    private static final String PAGE_TITLE = "pageTitle";
-    private static final String META_TITLE = "metaTitle";
-    private static final String META_DESCRIPTION = "metaDescription";
-    private static final String META_KEYWORDS = "metaKeywords";
+    private String pageTitle;
+    private String metaTitle;
+    private String metaDescription;
+    private String metaKeywords;
 
-    private SEODataModel() {
-        // prevent direct initialization
+    public void setPageTitle(String pageTitle) {
+        this.pageTitle = pageTitle;
     }
 
-    public static class Builder {
+    public void setMetaTitle(String metaTitle) {
+        this.metaTitle = metaTitle;
+    }
 
-        private SEODataModel seoDataModel;
+    public void setMetaDescription(String metaDescription) {
+        this.metaDescription = metaDescription;
+    }
 
-        public Builder() {
-            seoDataModel = new SEODataModel();
-        }
+    public void setMetaKeywords(String metaKeywords) {
+        this.metaKeywords = metaKeywords;
+    }
+
+    public String getPageTitle() {
+        return pageTitle;
+    }
+
+    public String getMetaTitle() {
+        return metaTitle;
+    }
+
+    public String getMetaDescription() {
+        return metaDescription;
+    }
+
+    public String getMetaKeywords() {
+        return metaKeywords;
+    }
+
+    public static final class Builder {
+        private String pageTitle;
+        private String metaTitle;
+        private String metaDescription;
+        private String metaKeywords;
 
         public Builder withPageTitle(String pageTitle) {
-            seoDataModel.addSingleNode(PAGE_TITLE, pageTitle);
+            this.pageTitle = pageTitle;
             return this;
         }
 
         public Builder withMetaTitle(String metaTitle) {
-            seoDataModel.addSingleNode(META_TITLE, metaTitle);
+            this.metaTitle = metaTitle;
             return this;
         }
 
         public Builder withMetaDescription(String metaDescription) {
-            seoDataModel.addSingleNode(META_DESCRIPTION, metaDescription);
+            this.metaDescription = metaDescription;
             return this;
         }
 
         public Builder withMetaKeywords(String metaKeywords) {
-            seoDataModel.addSingleNode(META_KEYWORDS, metaKeywords);
+            this.metaKeywords = metaKeywords;
             return this;
         }
 
         public SEODataModel build() {
-            return seoDataModel;
+            SEODataModel sEODataModel = new SEODataModel();
+            sEODataModel.metaDescription = this.metaDescription;
+            sEODataModel.metaTitle = this.metaTitle;
+            sEODataModel.metaKeywords = this.metaKeywords;
+            sEODataModel.pageTitle = this.pageTitle;
+            return sEODataModel;
         }
     }
 }
