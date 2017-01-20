@@ -5,6 +5,8 @@ import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
 
+import java.util.List;
+
 /**
  * Response data model for entries.
  *
@@ -12,68 +14,139 @@ import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
  */
 public class EntryDataModel extends BaseBodyDataModel {
 
-    private static final String ID = "id";
-    private static final String TITLE = "title";
-    private static final String LINK = "link";
-    private static final String PROLOGUE = "prologue";
-    private static final String USER = "user";
-    private static final String TAGS = "tags";
-    private static final String CATEGORY = "category";
-    private static final String CREATED = "created";
+    long id;
+    String title;
+    String link;
+    String prologue;
+    UserDataModel user;
+    List<TagDataModel> tags;
+    CategoryDataModel category;
+    String created;
 
-    protected EntryDataModel() {
-        // prevent direct initialization
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public static class Builder {
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-        protected EntryDataModel entryDataModel;
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-        public Builder() {
-            this.entryDataModel = new EntryDataModel();
-        }
+    public void setPrologue(String prologue) {
+        this.prologue = prologue;
+    }
 
-        public Builder withID(Long id) {
-            this.entryDataModel.addSingleNode(ID, id);
+    public void setUser(UserDataModel user) {
+        this.user = user;
+    }
+
+    public void setTags(List<TagDataModel> tags) {
+        this.tags = tags;
+    }
+
+    public void setCategory(CategoryDataModel category) {
+        this.category = category;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public String getPrologue() {
+        return prologue;
+    }
+
+    public UserDataModel getUser() {
+        return user;
+    }
+
+    public List<TagDataModel> getTags() {
+        return tags;
+    }
+
+    public CategoryDataModel getCategory() {
+        return category;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public static final class Builder {
+        private long id;
+        private String title;
+        private String link;
+        private String prologue;
+        private UserDataModel user;
+        private List<TagDataModel> tags;
+        private CategoryDataModel category;
+        private String created;
+
+        public Builder withID(long id) {
+            this.id = id;
             return this;
         }
 
         public Builder withTitle(String title) {
-            entryDataModel.addSingleNode(TITLE, title);
+            this.title = title;
             return this;
         }
 
         public Builder withLink(String link) {
-            entryDataModel.addSingleNode(LINK, link);
+            this.link = link;
             return this;
         }
 
         public Builder withPrologue(String prologue) {
-            entryDataModel.addSingleNode(PROLOGUE, prologue);
+            this.prologue = prologue;
             return this;
         }
 
-        public Builder withOwner(UserDataModel owner) {
-            entryDataModel.addSingleNode(USER, owner);
+        public Builder withOwner(UserDataModel user) {
+            this.user = user;
             return this;
         }
 
-        public Builder withTag(TagDataModel tag) {
-            entryDataModel.addListItemNode(TAGS, tag);
+        public Builder withTags(List<TagDataModel> tags) {
+            this.tags = tags;
             return this;
         }
 
         public Builder withCategory(CategoryDataModel category) {
-            entryDataModel.addSingleNode(CATEGORY, category);
+            this.category = category;
             return this;
         }
 
         public Builder withCreated(String created) {
-            entryDataModel.addSingleNode(CREATED, created);
+            this.created = created;
             return this;
         }
 
         public EntryDataModel build() {
+            EntryDataModel entryDataModel = new EntryDataModel();
+            entryDataModel.prologue = this.prologue;
+            entryDataModel.id = this.id;
+            entryDataModel.created = this.created;
+            entryDataModel.title = this.title;
+            entryDataModel.tags = this.tags;
+            entryDataModel.link = this.link;
+            entryDataModel.category = this.category;
+            entryDataModel.user = this.user;
             return entryDataModel;
         }
     }

@@ -9,33 +9,45 @@ import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
  */
 public class DCPDataModel extends BaseBodyDataModel {
 
-    private static final String KEY = "key";
-    private static final String VALUE = "value";
+    private String key;
+    private String value;
 
-    private DCPDataModel() {
-        // prevent direct initialization
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public static class Builder {
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-        private DCPDataModel dcpDataModel;
+    public String getKey() {
+        return key;
+    }
 
-        public Builder() {
-            dcpDataModel = new DCPDataModel();
-        }
+    public String getValue() {
+        return value;
+    }
+
+
+    public static final class Builder {
+        private String key;
+        private String value;
 
         public Builder withKey(String key) {
-            dcpDataModel.addSingleNode(KEY, key);
+            this.key = key;
             return this;
         }
 
         public Builder withValue(String value) {
-            dcpDataModel.addSingleNode(VALUE, value);
+            this.value = value;
             return this;
         }
 
         public DCPDataModel build() {
-            return dcpDataModel;
+            DCPDataModel dCPDataModel = new DCPDataModel();
+            dCPDataModel.key = this.key;
+            dCPDataModel.value = this.value;
+            return dCPDataModel;
         }
     }
 }

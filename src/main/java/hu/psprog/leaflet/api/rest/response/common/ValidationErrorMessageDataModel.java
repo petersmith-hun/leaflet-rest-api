@@ -7,17 +7,35 @@ package hu.psprog.leaflet.api.rest.response.common;
  */
 public class ValidationErrorMessageDataModel extends ErrorMessageDataModel {
 
-    private static final String FIELD = "field";
+    private String field;
 
-    private ValidationErrorMessageDataModel() {
-        // prevent direct initialization
+    public void setField(String field) {
+        this.field = field;
     }
 
-    public static class Builder extends ErrorMessageDataModel.Builder {
+    public String getField() {
+        return field;
+    }
+
+    public static final class Builder {
+        private String message;
+        private String field;
+
+        public Builder withMessage(String message) {
+            this.message = message;
+            return this;
+        }
 
         public Builder withField(String field) {
-            errorMessageDataModel.addSingleNode(FIELD, field);
+            this.field = field;
             return this;
+        }
+
+        public ValidationErrorMessageDataModel build() {
+            ValidationErrorMessageDataModel errorMessageDataModel = new ValidationErrorMessageDataModel();
+            errorMessageDataModel.message = this.message;
+            errorMessageDataModel.field = this.field;
+            return errorMessageDataModel;
         }
     }
 }

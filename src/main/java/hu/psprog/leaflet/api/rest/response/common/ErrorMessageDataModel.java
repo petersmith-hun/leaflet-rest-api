@@ -7,26 +7,27 @@ package hu.psprog.leaflet.api.rest.response.common;
  */
 public class ErrorMessageDataModel extends BaseBodyDataModel {
 
-    private static final String MESSAGE = "message";
+    String message;
 
-    protected ErrorMessageDataModel() {
-        // prevent direct initialization
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public static class Builder {
+    public String getMessage() {
+        return message;
+    }
 
-        protected ErrorMessageDataModel errorMessageDataModel;
-
-        public Builder() {
-            errorMessageDataModel = new ErrorMessageDataModel();
-        }
+    public static final class Builder {
+        private String message;
 
         public Builder withMessage(String message) {
-            errorMessageDataModel.addSingleNode(MESSAGE, message);
+            this.message = message;
             return this;
         }
 
         public ErrorMessageDataModel build() {
+            ErrorMessageDataModel errorMessageDataModel = new ErrorMessageDataModel();
+            errorMessageDataModel.message = this.message;
             return errorMessageDataModel;
         }
     }

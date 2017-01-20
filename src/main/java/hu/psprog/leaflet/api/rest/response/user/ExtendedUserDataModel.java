@@ -7,47 +7,122 @@ package hu.psprog.leaflet.api.rest.response.user;
  */
 public class ExtendedUserDataModel extends UserDataModel {
 
-    private static final String EMAIL = "email";
-    private static final String ROLE = "role";
-    private static final String LOCALE = "locale";
-    private static final String CREATED = "created";
-    private static final String LAST_LOGIN = "lastLogin";
-    private static final String LAST_MODIFIED = "lastModified";
+    private String email;
+    private String role;
+    private String locale;
+    private String created;
+    private String lastLogin;
+    private String lastModified;
 
-    private ExtendedUserDataModel() {
-        // prevent direct initialization
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static class Builder extends UserDataModel.Builder {
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public void setLastLogin(String lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public String getLastLogin() {
+        return lastLogin;
+    }
+
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public static final class Builder {
+        private long id;
+        private String username;
+        private String email;
+        private String role;
+        private String locale;
+        private String created;
+        private String lastLogin;
+        private String lastModified;
 
         public Builder withEmail(String email) {
-            userDataModel.addSingleNode(EMAIL, email);
+            this.email = email;
             return this;
         }
 
         public Builder withRole(String role) {
-            userDataModel.addSingleNode(ROLE, role);
+            this.role = role;
+            return this;
+        }
+
+        public Builder withID(long id) {
+            this.id = id;
             return this;
         }
 
         public Builder withLocale(String locale) {
-            userDataModel.addSingleNode(LOCALE, locale);
+            this.locale = locale;
+            return this;
+        }
+
+        public Builder withUsername(String username) {
+            this.username = username;
             return this;
         }
 
         public Builder withCreated(String created) {
-            userDataModel.addSingleNode(CREATED, created);
+            this.created = created;
             return this;
         }
 
         public Builder withLastLogin(String lastLogin) {
-            userDataModel.addSingleNode(LAST_LOGIN, lastLogin);
+            this.lastLogin = lastLogin;
             return this;
         }
 
         public Builder withLastModified(String lastModified) {
-            userDataModel.addSingleNode(LAST_MODIFIED, lastModified);
+            this.lastModified = lastModified;
             return this;
+        }
+
+        public ExtendedUserDataModel build() {
+            ExtendedUserDataModel extendedUserDataModel = new ExtendedUserDataModel();
+            extendedUserDataModel.email = this.email;
+            extendedUserDataModel.locale = this.locale;
+            extendedUserDataModel.created = this.created;
+            extendedUserDataModel.lastLogin = this.lastLogin;
+            extendedUserDataModel.lastModified = this.lastModified;
+            extendedUserDataModel.role = this.role;
+            extendedUserDataModel.id = this.id;
+            extendedUserDataModel.username = this.username;
+            return extendedUserDataModel;
         }
     }
 }

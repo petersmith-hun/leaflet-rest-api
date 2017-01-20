@@ -7,68 +7,139 @@ package hu.psprog.leaflet.api.rest.response.common;
  */
 public class PaginationDataModel extends BaseBodyDataModel {
 
-    private static final String ENTITY_COUNT = "entityCount";
-    private static final String PAGE_COUNT = "pageCount";
-    private static final String PAGE_NUMBER = "pageNumber";
-    private static final String ENTITY_COUNT_ON_PAGE = "entityCountOnPage";
-    private static final String IS_FIRST = "isFirst";
-    private static final String IS_LAST = "isLast";
-    private static final String HAS_NEXT = "hasNext";
-    private static final String HAS_PREVIOUS = "hasPrevious";
+    private long entityCount;
+    private int pageCount;
+    private int pageNumber;
+    private int entityCountOnPage;
+    private boolean isFirst;
+    private boolean isLast;
+    private boolean hasNext;
+    private boolean hasPrevious;
 
-    private PaginationDataModel() {
-        // prevent direct initialization
+    public long getEntityCount() {
+        return entityCount;
     }
 
-    public static class Builder {
+    public void setEntityCount(long entityCount) {
+        this.entityCount = entityCount;
+    }
 
-        private PaginationDataModel paginationDataModel;
+    public int getPageCount() {
+        return pageCount;
+    }
 
-        public Builder() {
-            paginationDataModel = new PaginationDataModel();
-        }
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public int getPageNumber() {
+        return pageNumber;
+    }
+
+    public void setPageNumber(int pageNumber) {
+        this.pageNumber = pageNumber;
+    }
+
+    public int getEntityCountOnPage() {
+        return entityCountOnPage;
+    }
+
+    public void setEntityCountOnPage(int entityCountOnPage) {
+        this.entityCountOnPage = entityCountOnPage;
+    }
+
+    public boolean isFirst() {
+        return isFirst;
+    }
+
+    public void setFirst(boolean first) {
+        isFirst = first;
+    }
+
+    public boolean isLast() {
+        return isLast;
+    }
+
+    public void setLast(boolean last) {
+        isLast = last;
+    }
+
+    public boolean isHasNext() {
+        return hasNext;
+    }
+
+    public void setHasNext(boolean hasNext) {
+        this.hasNext = hasNext;
+    }
+
+    public boolean isHasPrevious() {
+        return hasPrevious;
+    }
+
+    public void setHasPrevious(boolean hasPrevious) {
+        this.hasPrevious = hasPrevious;
+    }
+
+    public static final class Builder {
+        private long entityCount;
+        private int pageCount;
+        private int pageNumber;
+        private int entityCountOnPage;
+        private boolean isFirst;
+        private boolean isLast;
+        private boolean hasNext;
+        private boolean hasPrevious;
 
         public Builder withEntityCount(long entityCount) {
-            paginationDataModel.addSingleNode(ENTITY_COUNT, entityCount);
+            this.entityCount = entityCount;
             return this;
         }
 
         public Builder withPageCount(int pageCount) {
-            paginationDataModel.addSingleNode(PAGE_COUNT, pageCount);
+            this.pageCount = pageCount;
             return this;
         }
 
         public Builder withPageNumber(int pageNumber) {
-            paginationDataModel.addSingleNode(PAGE_NUMBER, pageNumber);
+            this.pageNumber = pageNumber;
             return this;
         }
 
         public Builder withEntityCountOnPage(int entityCountOnPage) {
-            paginationDataModel.addSingleNode(ENTITY_COUNT_ON_PAGE, entityCountOnPage);
+            this.entityCountOnPage = entityCountOnPage;
             return this;
         }
 
         public Builder withIsFirst(boolean isFirst) {
-            paginationDataModel.addSingleNode(IS_FIRST, isFirst);
+            this.isFirst = isFirst;
             return this;
         }
 
         public Builder withIsLast(boolean isLast) {
-            paginationDataModel.addSingleNode(IS_LAST, isLast);
+            this.isLast = isLast;
             return this;
         }
 
         public Builder withHasNext(boolean hasNext) {
-            paginationDataModel.addSingleNode(HAS_NEXT, hasNext);
+            this.hasNext = hasNext;
             return this;
         }
 
         public Builder withHasPrevious(boolean hasPrevious) {
-            paginationDataModel.addSingleNode(HAS_PREVIOUS, hasPrevious);
+            this.hasPrevious = hasPrevious;
             return this;
         }
 
         public PaginationDataModel build() {
+            PaginationDataModel paginationDataModel = new PaginationDataModel();
+            paginationDataModel.setEntityCount(entityCount);
+            paginationDataModel.setPageCount(pageCount);
+            paginationDataModel.setPageNumber(pageNumber);
+            paginationDataModel.setEntityCountOnPage(entityCountOnPage);
+            paginationDataModel.setHasNext(hasNext);
+            paginationDataModel.setHasPrevious(hasPrevious);
+            paginationDataModel.isFirst = this.isFirst;
+            paginationDataModel.isLast = this.isLast;
             return paginationDataModel;
         }
     }

@@ -9,26 +9,27 @@ import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
  */
 public class TagDataModel extends BaseBodyDataModel {
 
-    private static final String TITLE = "title";
+    private String title;
 
-    private TagDataModel() {
-        // prevent direct initialization
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public static class Builder {
+    public String getTitle() {
+        return title;
+    }
 
-        private TagDataModel tagDataModel;
-
-        public Builder() {
-            this.tagDataModel = new TagDataModel();
-        }
+    public static final class Builder {
+        private String title;
 
         public Builder withTitle(String title) {
-            tagDataModel.addSingleNode(TITLE, title);
+            this.title = title;
             return this;
         }
 
         public TagDataModel build() {
+            TagDataModel tagDataModel = new TagDataModel();
+            tagDataModel.title = this.title;
             return tagDataModel;
         }
     }

@@ -3,38 +3,49 @@ package hu.psprog.leaflet.api.rest.response.user;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 
 /**
- * Basic user data response model.
+ * Response model for a user.
  *
  * @author Peter Smith
  */
 public class UserDataModel extends BaseBodyDataModel {
 
-    private static final String ID = "id";
-    private static final String USERNAME = "username";
+    long id;
+    String username;
 
-    protected UserDataModel() {
-        // prevent direct initialization
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public static class Builder {
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        protected UserDataModel userDataModel;
+    public long getId() {
+        return id;
+    }
 
-        public Builder() {
-            this.userDataModel = new UserDataModel();
-        }
+    public String getUsername() {
+        return username;
+    }
 
-        public Builder withID(Long id) {
-            userDataModel.addSingleNode(ID, id);
+    public static final class Builder {
+        private long id;
+        private String username;
+
+        public Builder withID(long id) {
+            this.id = id;
             return this;
         }
 
         public Builder withUsername(String username) {
-            userDataModel.addSingleNode(USERNAME, username);
+            this.username = username;
             return this;
         }
 
         public UserDataModel build() {
+            UserDataModel userDataModel = new UserDataModel();
+            userDataModel.id = this.id;
+            userDataModel.username = this.username;
             return userDataModel;
         }
     }
