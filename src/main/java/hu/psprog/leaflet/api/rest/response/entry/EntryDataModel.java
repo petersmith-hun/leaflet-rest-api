@@ -22,6 +22,7 @@ public class EntryDataModel extends BaseBodyDataModel {
     List<TagDataModel> tags;
     CategoryDataModel category;
     String created;
+    String lastModified;
 
     public void setId(long id) {
         this.id = id;
@@ -87,6 +88,14 @@ public class EntryDataModel extends BaseBodyDataModel {
         return created;
     }
 
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(String lastModified) {
+        this.lastModified = lastModified;
+    }
+
     public static final class Builder {
         private long id;
         private String title;
@@ -96,6 +105,7 @@ public class EntryDataModel extends BaseBodyDataModel {
         private List<TagDataModel> tags;
         private CategoryDataModel category;
         private String created;
+        private String lastModified;
 
         public Builder withID(long id) {
             this.id = id;
@@ -137,11 +147,17 @@ public class EntryDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public Builder withLastModified(String lastModified) {
+            this.lastModified = lastModified;
+            return this;
+        }
+
         public EntryDataModel build() {
             EntryDataModel entryDataModel = new EntryDataModel();
             entryDataModel.prologue = this.prologue;
             entryDataModel.id = this.id;
             entryDataModel.created = this.created;
+            entryDataModel.lastModified = this.lastModified;
             entryDataModel.title = this.title;
             entryDataModel.tags = this.tags;
             entryDataModel.link = this.link;
