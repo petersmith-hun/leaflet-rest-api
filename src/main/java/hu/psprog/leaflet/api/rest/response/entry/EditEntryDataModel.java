@@ -14,22 +14,31 @@ import java.util.List;
 public class EditEntryDataModel extends EntryDataModel {
 
     private String rawContent;
-    private String lastModified;
-
-    public void setRawContent(String rawContent) {
-        this.rawContent = rawContent;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
+    private boolean enabled;
+    private String entryStatus;
 
     public String getRawContent() {
         return rawContent;
     }
 
-    public String getLastModified() {
-        return lastModified;
+    public void setRawContent(String rawContent) {
+        this.rawContent = rawContent;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getEntryStatus() {
+        return entryStatus;
+    }
+
+    public void setEntryStatus(String entryStatus) {
+        this.entryStatus = entryStatus;
     }
 
     public static final class Builder {
@@ -43,6 +52,8 @@ public class EditEntryDataModel extends EntryDataModel {
         private String created;
         private String rawContent;
         private String lastModified;
+        private boolean enabled;
+        private String entryStatus;
 
         public Builder withID(long id) {
             this.id = id;
@@ -94,6 +105,16 @@ public class EditEntryDataModel extends EntryDataModel {
             return this;
         }
 
+        public Builder withEnabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
+        public Builder withEntryStatus(String entryStatus) {
+            this.entryStatus = entryStatus;
+            return this;
+        }
+
         public EditEntryDataModel build() {
             EditEntryDataModel entryDataModel = new EditEntryDataModel();
             entryDataModel.prologue = this.prologue;
@@ -106,6 +127,8 @@ public class EditEntryDataModel extends EntryDataModel {
             entryDataModel.user = this.user;
             entryDataModel.rawContent = this.rawContent;
             entryDataModel.lastModified = this.lastModified;
+            entryDataModel.enabled = this.enabled;
+            entryDataModel.entryStatus = this.entryStatus;
             return entryDataModel;
         }
     }
