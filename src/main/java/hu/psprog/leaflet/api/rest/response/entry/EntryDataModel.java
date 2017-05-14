@@ -2,6 +2,7 @@ package hu.psprog.leaflet.api.rest.response.entry;
 
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
+import hu.psprog.leaflet.api.rest.response.file.FileDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
 
@@ -23,6 +24,7 @@ public class EntryDataModel extends BaseBodyDataModel {
     CategoryDataModel category;
     String created;
     String lastModified;
+    List<FileDataModel> attachments;
 
     public void setId(long id) {
         this.id = id;
@@ -96,6 +98,14 @@ public class EntryDataModel extends BaseBodyDataModel {
         this.lastModified = lastModified;
     }
 
+    public List<FileDataModel> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<FileDataModel> attachments) {
+        this.attachments = attachments;
+    }
+
     public static final class Builder {
         private long id;
         private String title;
@@ -106,6 +116,7 @@ public class EntryDataModel extends BaseBodyDataModel {
         private CategoryDataModel category;
         private String created;
         private String lastModified;
+        private List<FileDataModel> attachments;
 
         public Builder withID(long id) {
             this.id = id;
@@ -152,6 +163,11 @@ public class EntryDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public Builder withAttachments(List<FileDataModel> attachments) {
+            this.attachments = attachments;
+            return this;
+        }
+
         public EntryDataModel build() {
             EntryDataModel entryDataModel = new EntryDataModel();
             entryDataModel.prologue = this.prologue;
@@ -163,6 +179,7 @@ public class EntryDataModel extends BaseBodyDataModel {
             entryDataModel.link = this.link;
             entryDataModel.category = this.category;
             entryDataModel.user = this.user;
+            entryDataModel.attachments = this.attachments;
             return entryDataModel;
         }
     }
