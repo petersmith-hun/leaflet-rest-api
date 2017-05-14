@@ -1,6 +1,7 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
+import hu.psprog.leaflet.api.rest.response.file.FileDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
 
@@ -43,6 +44,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
         private String created;
         private String content;
         private String lastModified;
+        private List<FileDataModel> attachments;
 
         public Builder withID(long id) {
             this.id = id;
@@ -94,6 +96,11 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             return this;
         }
 
+        public Builder withAttachments(List<FileDataModel> attachments) {
+            this.attachments = attachments;
+            return this;
+        }
+
         public ExtendedEntryDataModel build() {
             ExtendedEntryDataModel entryDataModel = new ExtendedEntryDataModel();
             entryDataModel.prologue = this.prologue;
@@ -106,6 +113,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             entryDataModel.user = this.user;
             entryDataModel.content = this.content;
             entryDataModel.lastModified = this.lastModified;
+            entryDataModel.attachments = this.attachments;
             return entryDataModel;
         }
     }
