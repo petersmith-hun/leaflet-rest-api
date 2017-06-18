@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.dcp;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -19,15 +20,6 @@ public class DCPRequestModel implements Serializable {
     private String key;
     private String value;
 
-    public DCPRequestModel() {
-        // Serializable
-    }
-
-    public DCPRequestModel(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
-
     public String getKey() {
         return key;
     }
@@ -42,5 +34,13 @@ public class DCPRequestModel implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("key", key)
+                .append("value", value)
+                .toString();
     }
 }

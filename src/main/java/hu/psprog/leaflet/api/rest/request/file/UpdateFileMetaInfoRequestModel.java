@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.file;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -33,5 +34,13 @@ public class UpdateFileMetaInfoRequestModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("originalFilename", originalFilename)
+                .append("description", description)
+                .toString();
     }
 }

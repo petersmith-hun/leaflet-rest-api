@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -28,10 +29,6 @@ public class UserInitializeRequestModel extends UserPasswordRequestModel {
     @NotNull
     private Locale defaultLocale;
 
-    public UserInitializeRequestModel() {
-        // Serializable
-    }
-
     public String getUsername() {
         return username;
     }
@@ -54,5 +51,16 @@ public class UserInitializeRequestModel extends UserPasswordRequestModel {
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("username", username)
+                .append("password", "[hidden]")
+                .append("email", email)
+                .append("defaultLocale", defaultLocale)
+                .append("passwordConfirmation", "[hidden]")
+                .toString();
     }
 }

@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.attachment;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,5 +35,13 @@ public class AttachmentRequestModel implements Serializable {
 
     public void setPathUUID(UUID pathUUID) {
         this.pathUUID = pathUUID;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("entryID", entryID)
+                .append("pathUUID", pathUUID)
+                .toString();
     }
 }

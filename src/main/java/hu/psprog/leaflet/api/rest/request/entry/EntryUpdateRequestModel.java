@@ -1,6 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.entry;
 
 import hu.psprog.leaflet.api.rest.request.common.SEOValuesRequestModel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Min;
@@ -49,10 +50,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     @NotNull
     private EntryInitialStatus status;
-
-    public EntryUpdateRequestModel() {
-        // Serializable
-    }
 
     public String getTitle() {
         return title;
@@ -124,5 +121,23 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setStatus(EntryInitialStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("metaTitle", getMetaTitle())
+                .append("title", title)
+                .append("metaDescription", getMetaDescription())
+                .append("link", link)
+                .append("prologue", prologue)
+                .append("content", content)
+                .append("metaKeywords", getMetaKeywords())
+                .append("rawContent", rawContent)
+                .append("categoryID", categoryID)
+                .append("locale", locale)
+                .append("enabled", enabled)
+                .append("status", status)
+                .toString();
     }
 }

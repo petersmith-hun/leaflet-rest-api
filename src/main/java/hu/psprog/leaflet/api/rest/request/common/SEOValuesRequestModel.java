@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.common;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import java.io.Serializable;
 
 /**
@@ -12,10 +14,6 @@ public class SEOValuesRequestModel implements Serializable {
     private String metaTitle;
     private String metaDescription;
     private String metaKeywords;
-
-    public SEOValuesRequestModel() {
-        // Serializable
-    }
 
     public String getMetaTitle() {
         return metaTitle;
@@ -39,5 +37,14 @@ public class SEOValuesRequestModel implements Serializable {
 
     public void setMetaKeywords(String metaKeywords) {
         this.metaKeywords = metaKeywords;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("metaTitle", metaTitle)
+                .append("metaDescription", metaDescription)
+                .append("metaKeywords", metaKeywords)
+                .toString();
     }
 }

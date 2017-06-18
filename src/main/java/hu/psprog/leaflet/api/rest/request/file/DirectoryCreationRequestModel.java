@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.file;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
@@ -34,5 +35,13 @@ public class DirectoryCreationRequestModel implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("parent", parent)
+                .append("name", name)
+                .toString();
     }
 }

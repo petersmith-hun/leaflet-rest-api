@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.tag;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,5 +35,13 @@ public class TagAssignmentRequestModel implements Serializable {
 
     public void setTagID(Long tagID) {
         this.tagID = tagID;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("entryID", entryID)
+                .append("tagID", tagID)
+                .toString();
     }
 }

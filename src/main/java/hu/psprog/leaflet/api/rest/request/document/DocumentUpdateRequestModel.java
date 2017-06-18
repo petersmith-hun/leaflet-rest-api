@@ -1,6 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.document;
 
 import hu.psprog.leaflet.api.rest.request.common.SEOValuesRequestModel;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -84,5 +85,20 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("metaTitle", getMetaTitle())
+                .append("title", title)
+                .append("metaDescription", getMetaDescription())
+                .append("link", link)
+                .append("content", content)
+                .append("rawContent", rawContent)
+                .append("locale", locale)
+                .append("metaKeywords", getMetaKeywords())
+                .append("enabled", enabled)
+                .toString();
     }
 }
