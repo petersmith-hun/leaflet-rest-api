@@ -1,10 +1,16 @@
 package hu.psprog.leaflet.api.rest.response.user;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Extended user details data response model.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = ExtendedUserDataModel.ExtendedUserDataModelBuilder.class)
 public class ExtendedUserDataModel extends UserDataModel {
 
     private String email;
@@ -13,30 +19,6 @@ public class ExtendedUserDataModel extends UserDataModel {
     private String created;
     private String lastLogin;
     private String lastModified;
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public void setLastLogin(String lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
 
     public String getEmail() {
         return email;
@@ -62,7 +44,57 @@ public class ExtendedUserDataModel extends UserDataModel {
         return lastModified;
     }
 
-    public static final class Builder {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof ExtendedUserDataModel)) return false;
+
+        ExtendedUserDataModel that = (ExtendedUserDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(email, that.email)
+                .append(role, that.role)
+                .append(locale, that.locale)
+                .append(created, that.created)
+                .append(lastLogin, that.lastLogin)
+                .append(lastModified, that.lastModified)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(email)
+                .append(role)
+                .append(locale)
+                .append(created)
+                .append(lastLogin)
+                .append(lastModified)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("email", email)
+                .append("role", role)
+                .append("locale", locale)
+                .append("created", created)
+                .append("lastLogin", lastLogin)
+                .append("id", id)
+                .append("username", username)
+                .append("lastModified", lastModified)
+                .toString();
+    }
+
+    public static ExtendedUserDataModelBuilder getExtendedBuilder() {
+        return new ExtendedUserDataModelBuilder();
+    }
+
+    public static final class ExtendedUserDataModelBuilder {
         private long id;
         private String username;
         private String email;
@@ -72,55 +104,58 @@ public class ExtendedUserDataModel extends UserDataModel {
         private String lastLogin;
         private String lastModified;
 
-        public Builder withEmail(String email) {
+        private ExtendedUserDataModelBuilder() {
+        }
+
+        public ExtendedUserDataModelBuilder withEmail(String email) {
             this.email = email;
             return this;
         }
 
-        public Builder withRole(String role) {
+        public ExtendedUserDataModelBuilder withRole(String role) {
             this.role = role;
             return this;
         }
 
-        public Builder withID(long id) {
+        public ExtendedUserDataModelBuilder withId(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder withLocale(String locale) {
+        public ExtendedUserDataModelBuilder withLocale(String locale) {
             this.locale = locale;
             return this;
         }
 
-        public Builder withUsername(String username) {
+        public ExtendedUserDataModelBuilder withUsername(String username) {
             this.username = username;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public ExtendedUserDataModelBuilder withCreated(String created) {
             this.created = created;
             return this;
         }
 
-        public Builder withLastLogin(String lastLogin) {
+        public ExtendedUserDataModelBuilder withLastLogin(String lastLogin) {
             this.lastLogin = lastLogin;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public ExtendedUserDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
         public ExtendedUserDataModel build() {
             ExtendedUserDataModel extendedUserDataModel = new ExtendedUserDataModel();
-            extendedUserDataModel.email = this.email;
-            extendedUserDataModel.locale = this.locale;
             extendedUserDataModel.created = this.created;
-            extendedUserDataModel.lastLogin = this.lastLogin;
             extendedUserDataModel.lastModified = this.lastModified;
-            extendedUserDataModel.role = this.role;
             extendedUserDataModel.id = this.id;
+            extendedUserDataModel.locale = this.locale;
+            extendedUserDataModel.lastLogin = this.lastLogin;
+            extendedUserDataModel.role = this.role;
+            extendedUserDataModel.email = this.email;
             extendedUserDataModel.username = this.username;
             return extendedUserDataModel;
         }

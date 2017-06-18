@@ -1,7 +1,5 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import java.io.Serializable;
 
 /**
@@ -11,8 +9,4 @@ import java.io.Serializable;
  */
 public abstract class BaseBodyDataModel implements Serializable {
 
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 }

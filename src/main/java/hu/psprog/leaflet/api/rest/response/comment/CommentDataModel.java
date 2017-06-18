@@ -2,6 +2,9 @@ package hu.psprog.leaflet.api.rest.response.comment;
 
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Response data model for comments.
@@ -65,7 +68,53 @@ public class CommentDataModel extends BaseBodyDataModel {
         this.deleted = deleted;
     }
 
-    public static final class Builder {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof CommentDataModel)) return false;
+
+        CommentDataModel that = (CommentDataModel) o;
+
+        return new EqualsBuilder()
+                .append(deleted, that.deleted)
+                .append(id, that.id)
+                .append(owner, that.owner)
+                .append(content, that.content)
+                .append(created, that.created)
+                .append(lastModified, that.lastModified)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(owner)
+                .append(content)
+                .append(created)
+                .append(lastModified)
+                .append(deleted)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("owner", owner)
+                .append("content", content)
+                .append("created", created)
+                .append("lastModified", lastModified)
+                .append("deleted", deleted)
+                .toString();
+    }
+
+    public static CommentDataModelBuilder getBuilder() {
+        return new CommentDataModelBuilder();
+    }
+
+    public static final class CommentDataModelBuilder {
         private Long id;
         private UserDataModel owner;
         private String content;
@@ -73,32 +122,35 @@ public class CommentDataModel extends BaseBodyDataModel {
         private String lastModified;
         private boolean deleted;
 
-        public Builder withId(Long id) {
+        private CommentDataModelBuilder() {
+        }
+
+        public CommentDataModelBuilder withId(Long id) {
             this.id = id;
             return this;
         }
 
-        public Builder withOwner(UserDataModel owner) {
+        public CommentDataModelBuilder withOwner(UserDataModel owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder withContent(String content) {
+        public CommentDataModelBuilder withContent(String content) {
             this.content = content;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public CommentDataModelBuilder withCreated(String created) {
             this.created = created;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public CommentDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
-        public Builder withDeleted(boolean deleted) {
+        public CommentDataModelBuilder withDeleted(boolean deleted) {
             this.deleted = deleted;
             return this;
         }

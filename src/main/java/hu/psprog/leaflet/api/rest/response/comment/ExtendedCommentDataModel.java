@@ -2,6 +2,9 @@ package hu.psprog.leaflet.api.rest.response.comment;
 
 import hu.psprog.leaflet.api.rest.response.entry.EntryDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Extended response data model for comments.
@@ -17,78 +20,115 @@ public class ExtendedCommentDataModel extends CommentDataModel {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public EntryDataModel getAssociatedEntry() {
         return associatedEntry;
     }
 
-    public void setAssociatedEntry(EntryDataModel associatedEntry) {
-        this.associatedEntry = associatedEntry;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof ExtendedCommentDataModel)) return false;
+
+        ExtendedCommentDataModel that = (ExtendedCommentDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(enabled, that.enabled)
+                .append(associatedEntry, that.associatedEntry)
+                .isEquals();
     }
 
-    public static final class Builder {
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(enabled)
+                .append(associatedEntry)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("associatedEntry", associatedEntry)
+                .append("id", getId())
+                .append("owner", getOwner())
+                .append("content", getContent())
+                .append("created", getCreated())
+                .append("lastModified", getLastModified())
+                .append("deleted", isDeleted())
+                .toString();
+    }
+
+    public static ExtendedCommentDataModelBuilder getExtendedBuilder() {
+        return new ExtendedCommentDataModelBuilder();
+    }
+
+    public static final class ExtendedCommentDataModelBuilder {
         private boolean enabled;
-        private Long id;
         private EntryDataModel associatedEntry;
+        private Long id;
         private UserDataModel owner;
         private String content;
         private String created;
         private String lastModified;
         private boolean deleted;
 
-        public Builder withEnabled(boolean enabled) {
+        private ExtendedCommentDataModelBuilder() {
+        }
+
+        public ExtendedCommentDataModelBuilder withEnabled(boolean enabled) {
             this.enabled = enabled;
             return this;
         }
 
-        public Builder withId(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder withAssociatedEntry(EntryDataModel associatedEntry) {
+        public ExtendedCommentDataModelBuilder withAssociatedEntry(EntryDataModel associatedEntry) {
             this.associatedEntry = associatedEntry;
             return this;
         }
 
-        public Builder withOwner(UserDataModel owner) {
+        public ExtendedCommentDataModelBuilder withId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ExtendedCommentDataModelBuilder withOwner(UserDataModel owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder withContent(String content) {
+        public ExtendedCommentDataModelBuilder withContent(String content) {
             this.content = content;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public ExtendedCommentDataModelBuilder withCreated(String created) {
             this.created = created;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public ExtendedCommentDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
-        public Builder withDeleted(boolean deleted) {
+        public ExtendedCommentDataModelBuilder withDeleted(boolean deleted) {
             this.deleted = deleted;
             return this;
         }
 
         public ExtendedCommentDataModel build() {
             ExtendedCommentDataModel extendedCommentDataModel = new ExtendedCommentDataModel();
-            extendedCommentDataModel.setEnabled(enabled);
             extendedCommentDataModel.setId(id);
-            extendedCommentDataModel.setAssociatedEntry(associatedEntry);
             extendedCommentDataModel.setOwner(owner);
             extendedCommentDataModel.setContent(content);
             extendedCommentDataModel.setCreated(created);
             extendedCommentDataModel.setLastModified(lastModified);
             extendedCommentDataModel.setDeleted(deleted);
+            extendedCommentDataModel.enabled = this.enabled;
+            extendedCommentDataModel.associatedEntry = this.associatedEntry;
             return extendedCommentDataModel;
         }
     }

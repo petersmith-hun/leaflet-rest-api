@@ -1,32 +1,22 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Response model for SEO parameters.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = SEODataModel.SEODataModelBuilder.class)
 public class SEODataModel extends BaseBodyDataModel {
 
     private String pageTitle;
     private String metaTitle;
     private String metaDescription;
     private String metaKeywords;
-
-    public void setPageTitle(String pageTitle) {
-        this.pageTitle = pageTitle;
-    }
-
-    public void setMetaTitle(String metaTitle) {
-        this.metaTitle = metaTitle;
-    }
-
-    public void setMetaDescription(String metaDescription) {
-        this.metaDescription = metaDescription;
-    }
-
-    public void setMetaKeywords(String metaKeywords) {
-        this.metaKeywords = metaKeywords;
-    }
 
     public String getPageTitle() {
         return pageTitle;
@@ -44,28 +34,71 @@ public class SEODataModel extends BaseBodyDataModel {
         return metaKeywords;
     }
 
-    public static final class Builder {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof SEODataModel)) return false;
+
+        SEODataModel that = (SEODataModel) o;
+
+        return new EqualsBuilder()
+                .append(pageTitle, that.pageTitle)
+                .append(metaTitle, that.metaTitle)
+                .append(metaDescription, that.metaDescription)
+                .append(metaKeywords, that.metaKeywords)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(pageTitle)
+                .append(metaTitle)
+                .append(metaDescription)
+                .append(metaKeywords)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("pageTitle", pageTitle)
+                .append("metaTitle", metaTitle)
+                .append("metaDescription", metaDescription)
+                .append("metaKeywords", metaKeywords)
+                .toString();
+    }
+
+    public static SEODataModelBuilder getBuilder() {
+        return new SEODataModelBuilder();
+    }
+
+    public static final class SEODataModelBuilder {
         private String pageTitle;
         private String metaTitle;
         private String metaDescription;
         private String metaKeywords;
 
-        public Builder withPageTitle(String pageTitle) {
+        private SEODataModelBuilder() {
+        }
+
+        public SEODataModelBuilder withPageTitle(String pageTitle) {
             this.pageTitle = pageTitle;
             return this;
         }
 
-        public Builder withMetaTitle(String metaTitle) {
+        public SEODataModelBuilder withMetaTitle(String metaTitle) {
             this.metaTitle = metaTitle;
             return this;
         }
 
-        public Builder withMetaDescription(String metaDescription) {
+        public SEODataModelBuilder withMetaDescription(String metaDescription) {
             this.metaDescription = metaDescription;
             return this;
         }
 
-        public Builder withMetaKeywords(String metaKeywords) {
+        public SEODataModelBuilder withMetaKeywords(String metaKeywords) {
             this.metaKeywords = metaKeywords;
             return this;
         }

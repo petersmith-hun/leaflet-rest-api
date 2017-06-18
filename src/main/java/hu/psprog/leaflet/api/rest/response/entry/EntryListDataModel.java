@@ -1,6 +1,10 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +14,7 @@ import java.util.List;
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = EntryListDataModel.EntryListDataModelBuilder.class)
 public class EntryListDataModel extends BaseBodyDataModel {
 
     private List<EntryDataModel> entries;
@@ -18,25 +23,52 @@ public class EntryListDataModel extends BaseBodyDataModel {
         return entries;
     }
 
-    public void setEntries(List<EntryDataModel> entries) {
-        this.entries = entries;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof EntryListDataModel)) return false;
+
+        EntryListDataModel that = (EntryListDataModel) o;
+
+        return new EqualsBuilder()
+                .append(entries, that.entries)
+                .isEquals();
     }
 
-    public static final class Builder {
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(entries)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("entries", entries)
+                .toString();
+    }
+
+    public static EntryListDataModelBuilder getBuilder() {
+        return new EntryListDataModelBuilder();
+    }
+
+    public static final class EntryListDataModelBuilder {
         private List<EntryDataModel> entries;
 
-        public Builder() {
+        private EntryListDataModelBuilder() {
             entries = new LinkedList<>();
         }
 
-        public Builder withItem(EntryDataModel entry) {
+        public EntryListDataModelBuilder withItem(EntryDataModel entry) {
             this.entries.add(entry);
             return this;
         }
 
         public EntryListDataModel build() {
             EntryListDataModel entryListDataModel = new EntryListDataModel();
-            entryListDataModel.setEntries(entries);
+            entryListDataModel.entries = entries;
             return entryListDataModel;
         }
     }

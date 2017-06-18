@@ -1,8 +1,13 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
+import hu.psprog.leaflet.api.rest.response.file.FileDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
@@ -11,6 +16,7 @@ import java.util.List;
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = EditEntryDataModel.EditEntryDataModelBuilder.class)
 public class EditEntryDataModel extends EntryDataModel {
 
     private String rawContent;
@@ -21,27 +27,64 @@ public class EditEntryDataModel extends EntryDataModel {
         return rawContent;
     }
 
-    public void setRawContent(String rawContent) {
-        this.rawContent = rawContent;
-    }
-
     public boolean isEnabled() {
         return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getEntryStatus() {
         return entryStatus;
     }
 
-    public void setEntryStatus(String entryStatus) {
-        this.entryStatus = entryStatus;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof EditEntryDataModel)) return false;
+
+        EditEntryDataModel that = (EditEntryDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(enabled, that.enabled)
+                .append(rawContent, that.rawContent)
+                .append(entryStatus, that.entryStatus)
+                .isEquals();
     }
 
-    public static final class Builder {
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(rawContent)
+                .append(enabled)
+                .append(entryStatus)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("rawContent", rawContent)
+                .append("enabled", enabled)
+                .append("entryStatus", entryStatus)
+                .append("id", id)
+                .append("title", title)
+                .append("link", link)
+                .append("prologue", prologue)
+                .append("user", user)
+                .append("tags", tags)
+                .append("category", category)
+                .append("created", created)
+                .append("lastModified", lastModified)
+                .append("attachments", attachments)
+                .toString();
+    }
+
+    public static EditEntryDataModelBuilder getExtendedBuilder() {
+        return new EditEntryDataModelBuilder();
+    }
+
+    public static final class EditEntryDataModelBuilder {
         private long id;
         private String title;
         private String link;
@@ -50,86 +93,96 @@ public class EditEntryDataModel extends EntryDataModel {
         private List<TagDataModel> tags;
         private CategoryDataModel category;
         private String created;
-        private String rawContent;
         private String lastModified;
+        private List<FileDataModel> attachments;
+        private String rawContent;
         private boolean enabled;
         private String entryStatus;
 
-        public Builder withID(long id) {
-            this.id = id;
-            return this;
+        private EditEntryDataModelBuilder() {
         }
 
-        public Builder withTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder withLink(String link) {
-            this.link = link;
-            return this;
-        }
-
-        public Builder withPrologue(String prologue) {
-            this.prologue = prologue;
-            return this;
-        }
-
-        public Builder withOwner(UserDataModel user) {
-            this.user = user;
-            return this;
-        }
-
-        public Builder withTags(List<TagDataModel> tags) {
-            this.tags = tags;
-            return this;
-        }
-
-        public Builder withCategory(CategoryDataModel category) {
-            this.category = category;
-            return this;
-        }
-
-        public Builder withCreated(String created) {
-            this.created = created;
-            return this;
-        }
-
-        public Builder withRawContent(String rawContent) {
+        public EditEntryDataModelBuilder withRawContent(String rawContent) {
             this.rawContent = rawContent;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
-            this.lastModified = lastModified;
-            return this;
-        }
-
-        public Builder withEnabled(boolean enabled) {
+        public EditEntryDataModelBuilder withEnabled(boolean enabled) {
             this.enabled = enabled;
             return this;
         }
 
-        public Builder withEntryStatus(String entryStatus) {
+        public EditEntryDataModelBuilder withEntryStatus(String entryStatus) {
             this.entryStatus = entryStatus;
             return this;
         }
 
+        public EditEntryDataModelBuilder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withLink(String link) {
+            this.link = link;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withPrologue(String prologue) {
+            this.prologue = prologue;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withUser(UserDataModel user) {
+            this.user = user;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withTags(List<TagDataModel> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withCategory(CategoryDataModel category) {
+            this.category = category;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withCreated(String created) {
+            this.created = created;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withLastModified(String lastModified) {
+            this.lastModified = lastModified;
+            return this;
+        }
+
+        public EditEntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
+            this.attachments = attachments;
+            return this;
+        }
+
         public EditEntryDataModel build() {
-            EditEntryDataModel entryDataModel = new EditEntryDataModel();
-            entryDataModel.prologue = this.prologue;
-            entryDataModel.id = this.id;
-            entryDataModel.created = this.created;
-            entryDataModel.title = this.title;
-            entryDataModel.tags = this.tags;
-            entryDataModel.link = this.link;
-            entryDataModel.category = this.category;
-            entryDataModel.user = this.user;
-            entryDataModel.rawContent = this.rawContent;
-            entryDataModel.lastModified = this.lastModified;
-            entryDataModel.enabled = this.enabled;
-            entryDataModel.entryStatus = this.entryStatus;
-            return entryDataModel;
+            EditEntryDataModel editEntryDataModel = new EditEntryDataModel();
+            editEntryDataModel.link = this.link;
+            editEntryDataModel.enabled = this.enabled;
+            editEntryDataModel.prologue = this.prologue;
+            editEntryDataModel.lastModified = this.lastModified;
+            editEntryDataModel.rawContent = this.rawContent;
+            editEntryDataModel.id = this.id;
+            editEntryDataModel.user = this.user;
+            editEntryDataModel.category = this.category;
+            editEntryDataModel.title = this.title;
+            editEntryDataModel.created = this.created;
+            editEntryDataModel.attachments = this.attachments;
+            editEntryDataModel.entryStatus = this.entryStatus;
+            editEntryDataModel.tags = this.tags;
+            return editEntryDataModel;
         }
     }
 }

@@ -1,10 +1,13 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 /**
  * Body structure model for wrapped responses.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = WrapperBodyDataModel.WrapperBodyDataModelBuilder.class)
 public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyDataModel {
 
     private T body;
@@ -16,66 +19,50 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
         return body;
     }
 
-    public void setBody(T body) {
-        this.body = body;
-    }
-
     public PaginationDataModel getPagination() {
         return pagination;
-    }
-
-    public void setPagination(PaginationDataModel pagination) {
-        this.pagination = pagination;
     }
 
     public SEODataModel getSeo() {
         return seo;
     }
 
-    public void setSeo(SEODataModel seo) {
-        this.seo = seo;
-    }
-
     public ErrorMessageDataModel getError() {
         return error;
     }
 
-    public void setError(ErrorMessageDataModel error) {
-        this.error = error;
+    public static <T extends BaseBodyDataModel> WrapperBodyDataModelBuilder<T> getBuilder() {
+        return new WrapperBodyDataModelBuilder<>();
     }
 
     /**
      * Builder for {@link WrapperBodyDataModel}.
      */
-    public static final class Builder<T extends BaseBodyDataModel> {
+    public static final class WrapperBodyDataModelBuilder<T extends BaseBodyDataModel> {
         private T body;
         private PaginationDataModel pagination;
         private SEODataModel seo;
         private ErrorMessageDataModel error;
 
-        private Builder() {
+        private WrapperBodyDataModelBuilder() {
         }
 
-        public static <T extends BaseBodyDataModel> Builder<T> getBuilder() {
-            return new Builder<>();
-        }
-
-        public Builder withBody(T body) {
+        public WrapperBodyDataModelBuilder withBody(T body) {
             this.body = body;
             return this;
         }
 
-        public Builder withPagination(PaginationDataModel pagination) {
+        public WrapperBodyDataModelBuilder withPagination(PaginationDataModel pagination) {
             this.pagination = pagination;
             return this;
         }
 
-        public Builder withSeo(SEODataModel seo) {
+        public WrapperBodyDataModelBuilder withSeo(SEODataModel seo) {
             this.seo = seo;
             return this;
         }
 
-        public Builder withError(ErrorMessageDataModel error) {
+        public WrapperBodyDataModelBuilder withError(ErrorMessageDataModel error) {
             this.error = error;
             return this;
         }
