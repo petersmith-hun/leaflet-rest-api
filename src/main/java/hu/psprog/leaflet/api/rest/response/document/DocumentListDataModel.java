@@ -50,6 +50,10 @@ public class DocumentListDataModel extends BaseBodyDataModel {
                 .toString();
     }
 
+    public static DocumentListDataModelBuilder getBuilder() {
+        return new DocumentListDataModelBuilder();
+    }
+
     public static final class DocumentListDataModelBuilder {
         private List<EditDocumentDataModel> documents;
 

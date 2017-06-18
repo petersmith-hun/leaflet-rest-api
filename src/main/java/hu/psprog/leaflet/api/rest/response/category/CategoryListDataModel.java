@@ -50,7 +50,7 @@ public class CategoryListDataModel extends BaseBodyDataModel {
                 .toString();
     }
 
-    public CategoryListDataModelBuilder getBuilder() {
+    public static CategoryListDataModelBuilder getBuilder() {
         return new CategoryListDataModelBuilder();
     }
 
