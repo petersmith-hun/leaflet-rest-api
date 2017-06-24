@@ -1,27 +1,21 @@
 package hu.psprog.leaflet.api.rest.response.category;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * Extended response model for categories.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = ExtendedCategoryDataModel.ExtendedCategoryDataModelBuilder.class)
 public class ExtendedCategoryDataModel extends CategoryDataModel {
 
     private String description;
     private String created;
     private String lastModified;
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
 
     public String getDescription() {
         return description;
@@ -35,46 +29,95 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
         return lastModified;
     }
 
-    public static final class Builder {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof ExtendedCategoryDataModel)) return false;
+
+        ExtendedCategoryDataModel that = (ExtendedCategoryDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(description, that.description)
+                .append(created, that.created)
+                .append(lastModified, that.lastModified)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(description)
+                .append(created)
+                .append(lastModified)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("title", title)
+                .append("id", getId())
+                .append("description", description)
+                .append("created", created)
+                .append("title", getTitle())
+                .append("lastModified", lastModified)
+                .toString();
+    }
+
+    public static ExtendedCategoryDataModelBuilder getExtendedBuilder() {
+        return new ExtendedCategoryDataModelBuilder();
+    }
+
+    /**
+     * Builder for {@link ExtendedCategoryDataModel}.
+     */
+    public static final class ExtendedCategoryDataModelBuilder {
         private long id;
         private String title;
         private String description;
         private String created;
         private String lastModified;
 
-        public Builder withID(long id) {
-            this.id = id;
-            return this;
+        private ExtendedCategoryDataModelBuilder() {
         }
 
-        public Builder withTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder withDescription(String description) {
+        public ExtendedCategoryDataModelBuilder withDescription(String description) {
             this.description = description;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public ExtendedCategoryDataModelBuilder withCreated(String created) {
             this.created = created;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public ExtendedCategoryDataModelBuilder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ExtendedCategoryDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
+        public ExtendedCategoryDataModelBuilder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
         public ExtendedCategoryDataModel build() {
-            ExtendedCategoryDataModel categoryDataModel = new ExtendedCategoryDataModel();
-            categoryDataModel.title = this.title;
-            categoryDataModel.id = this.id;
-            categoryDataModel.description = this.description;
-            categoryDataModel.created = this.created;
-            categoryDataModel.lastModified = this.lastModified;
-            return categoryDataModel;
+            ExtendedCategoryDataModel extendedCategoryDataModel = new ExtendedCategoryDataModel();
+            extendedCategoryDataModel.created = this.created;
+            extendedCategoryDataModel.lastModified = this.lastModified;
+            extendedCategoryDataModel.description = this.description;
+            extendedCategoryDataModel.id = this.id;
+            extendedCategoryDataModel.title = this.title;
+            return extendedCategoryDataModel;
         }
     }
 }

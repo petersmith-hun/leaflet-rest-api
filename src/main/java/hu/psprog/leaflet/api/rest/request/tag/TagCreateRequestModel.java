@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.tag;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
@@ -18,19 +19,18 @@ public class TagCreateRequestModel implements Serializable {
     @Size(max = 255)
     private String name;
 
-    public TagCreateRequestModel() {
-        // Serializable
-    }
-
-    public TagCreateRequestModel(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .toString();
     }
 }

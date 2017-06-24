@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.file;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotNull;
@@ -44,5 +45,14 @@ public class FileUploadRequestModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("inputFile", inputFile)
+                .append("subFolder", subFolder)
+                .append("description", description)
+                .toString();
     }
 }

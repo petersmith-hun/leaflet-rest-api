@@ -1,9 +1,13 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
 import hu.psprog.leaflet.api.rest.response.file.FileDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
@@ -12,28 +16,64 @@ import java.util.List;
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = ExtendedEntryDataModel.ExtendedEntryDataModelBuilder.class)
 public class ExtendedEntryDataModel extends EntryDataModel {
 
     private String content;
-    private String lastModified;
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
-    }
 
     public String getContent() {
         return content;
     }
 
+    @Override
     public String getLastModified() {
         return lastModified;
     }
 
-    public static final class Builder {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof ExtendedEntryDataModel)) return false;
+
+        ExtendedEntryDataModel that = (ExtendedEntryDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(content, that.content)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(content)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("content", content)
+                .append("id", id)
+                .append("title", title)
+                .append("link", link)
+                .append("prologue", prologue)
+                .append("user", user)
+                .append("tags", tags)
+                .append("category", category)
+                .append("created", created)
+                .append("lastModified", lastModified)
+                .append("attachments", attachments)
+                .toString();
+    }
+
+    public static ExtendedEntryDataModelBuilder getExtendedBuilder() {
+        return new ExtendedEntryDataModelBuilder();
+    }
+
+    public static final class ExtendedEntryDataModelBuilder {
         private long id;
         private String title;
         private String link;
@@ -42,79 +82,82 @@ public class ExtendedEntryDataModel extends EntryDataModel {
         private List<TagDataModel> tags;
         private CategoryDataModel category;
         private String created;
+        private List<FileDataModel> attachments;
         private String content;
         private String lastModified;
-        private List<FileDataModel> attachments;
 
-        public Builder withID(long id) {
-            this.id = id;
-            return this;
+        private ExtendedEntryDataModelBuilder() {
         }
 
-        public Builder withTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder withLink(String link) {
-            this.link = link;
-            return this;
-        }
-
-        public Builder withPrologue(String prologue) {
-            this.prologue = prologue;
-            return this;
-        }
-
-        public Builder withOwner(UserDataModel user) {
-            this.user = user;
-            return this;
-        }
-
-        public Builder withTags(List<TagDataModel> tags) {
-            this.tags = tags;
-            return this;
-        }
-
-        public Builder withCategory(CategoryDataModel category) {
-            this.category = category;
-            return this;
-        }
-
-        public Builder withCreated(String created) {
-            this.created = created;
-            return this;
-        }
-
-        public Builder withContent(String content) {
+        public ExtendedEntryDataModelBuilder withContent(String content) {
             this.content = content;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public ExtendedEntryDataModelBuilder withId(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withLink(String link) {
+            this.link = link;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withPrologue(String prologue) {
+            this.prologue = prologue;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withUser(UserDataModel user) {
+            this.user = user;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withTags(List<TagDataModel> tags) {
+            this.tags = tags;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withCategory(CategoryDataModel category) {
+            this.category = category;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withCreated(String created) {
+            this.created = created;
+            return this;
+        }
+
+        public ExtendedEntryDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
-        public Builder withAttachments(List<FileDataModel> attachments) {
+        public ExtendedEntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
             this.attachments = attachments;
             return this;
         }
 
         public ExtendedEntryDataModel build() {
-            ExtendedEntryDataModel entryDataModel = new ExtendedEntryDataModel();
-            entryDataModel.prologue = this.prologue;
-            entryDataModel.id = this.id;
-            entryDataModel.created = this.created;
-            entryDataModel.title = this.title;
-            entryDataModel.tags = this.tags;
-            entryDataModel.link = this.link;
-            entryDataModel.category = this.category;
-            entryDataModel.user = this.user;
-            entryDataModel.content = this.content;
-            entryDataModel.lastModified = this.lastModified;
-            entryDataModel.attachments = this.attachments;
-            return entryDataModel;
+            ExtendedEntryDataModel extendedEntryDataModel = new ExtendedEntryDataModel();
+            extendedEntryDataModel.link = this.link;
+            extendedEntryDataModel.prologue = this.prologue;
+            extendedEntryDataModel.lastModified = this.lastModified;
+            extendedEntryDataModel.content = this.content;
+            extendedEntryDataModel.id = this.id;
+            extendedEntryDataModel.user = this.user;
+            extendedEntryDataModel.category = this.category;
+            extendedEntryDataModel.title = this.title;
+            extendedEntryDataModel.created = this.created;
+            extendedEntryDataModel.attachments = this.attachments;
+            extendedEntryDataModel.tags = this.tags;
+            return extendedEntryDataModel;
         }
     }
 }

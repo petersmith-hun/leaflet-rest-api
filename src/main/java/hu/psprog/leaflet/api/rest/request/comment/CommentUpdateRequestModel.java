@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.comment;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -21,5 +23,12 @@ public class CommentUpdateRequestModel implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("content", content)
+                .toString();
     }
 }

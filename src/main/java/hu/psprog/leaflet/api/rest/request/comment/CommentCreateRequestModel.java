@@ -2,6 +2,7 @@ package hu.psprog.leaflet.api.rest.request.comment;
 
 import hu.psprog.leaflet.api.rest.request.common.AuthenticatedRequestModel;
 import hu.psprog.leaflet.api.rest.request.validator.CommentUserDataCheck;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -53,5 +54,16 @@ public class CommentCreateRequestModel extends CommentUpdateRequestModel impleme
 
     public void setEntryId(Long entryId) {
         this.entryId = entryId;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("content", getContent())
+                .append("authenticatedUserId", authenticatedUserId)
+                .append("email", email)
+                .append("username", username)
+                .append("entryId", entryId)
+                .toString();
     }
 }

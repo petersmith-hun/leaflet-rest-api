@@ -1,12 +1,17 @@
 package hu.psprog.leaflet.api.rest.response.document;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Response data model for document editor returning RAW_CONTENT instead of rendered content.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = EditDocumentDataModel.EditDocumentDataModelBuilder.class)
 public class EditDocumentDataModel extends DocumentDataModel {
 
     private String rawContent;
@@ -17,93 +22,129 @@ public class EditDocumentDataModel extends DocumentDataModel {
         return rawContent;
     }
 
-    public void setRawContent(String rawContent) {
-        this.rawContent = rawContent;
-    }
-
     public String getLastModified() {
         return lastModified;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof EditDocumentDataModel)) return false;
+
+        EditDocumentDataModel that = (EditDocumentDataModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(enabled, that.enabled)
+                .append(rawContent, that.rawContent)
+                .append(lastModified, that.lastModified)
+                .isEquals();
     }
 
-    public static final class Builder {
-        private long id;
-        private String title;
-        private String link;
-        private String content;
-        private UserDataModel user;
-        private String created;
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(rawContent)
+                .append(lastModified)
+                .append(enabled)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("rawContent", rawContent)
+                .append("lastModified", lastModified)
+                .append("enabled", enabled)
+                .append("id", id)
+                .append("title", title)
+                .append("link", link)
+                .append("content", content)
+                .append("user", user)
+                .append("created", created)
+                .toString();
+    }
+
+    public static EditDocumentDataModelBuilder getExtendedBuilder() {
+        return new EditDocumentDataModelBuilder();
+    }
+
+    public static final class EditDocumentDataModelBuilder {
+        protected long id;
+        protected String title;
+        protected String link;
+        protected String content;
+        protected UserDataModel user;
+        protected String created;
         private String rawContent;
         private String lastModified;
         private boolean enabled;
 
-        public Builder withRawContent(String rawContent) {
+        private EditDocumentDataModelBuilder() {
+        }
+
+        public EditDocumentDataModelBuilder withRawContent(String rawContent) {
             this.rawContent = rawContent;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
-            this.lastModified = lastModified;
-            return this;
-        }
-
-        public Builder withId(long id) {
+        public EditDocumentDataModelBuilder withId(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder withTitle(String title) {
+        public EditDocumentDataModelBuilder withLastModified(String lastModified) {
+            this.lastModified = lastModified;
+            return this;
+        }
+
+        public EditDocumentDataModelBuilder withTitle(String title) {
             this.title = title;
             return this;
         }
 
-        public Builder withLink(String link) {
+        public EditDocumentDataModelBuilder withLink(String link) {
             this.link = link;
             return this;
         }
 
-        public Builder withContent(String content) {
+        public EditDocumentDataModelBuilder withEnabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
+        public EditDocumentDataModelBuilder withContent(String content) {
             this.content = content;
             return this;
         }
 
-        public Builder withUser(UserDataModel user) {
+        public EditDocumentDataModelBuilder withUser(UserDataModel user) {
             this.user = user;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public EditDocumentDataModelBuilder withCreated(String created) {
             this.created = created;
-            return this;
-        }
-
-        public Builder withEnabled(boolean enabled) {
-            this.enabled = enabled;
             return this;
         }
 
         public EditDocumentDataModel build() {
             EditDocumentDataModel editDocumentDataModel = new EditDocumentDataModel();
-            editDocumentDataModel.setRawContent(rawContent);
-            editDocumentDataModel.setLastModified(lastModified);
-            editDocumentDataModel.setId(id);
-            editDocumentDataModel.setTitle(title);
-            editDocumentDataModel.setLink(link);
-            editDocumentDataModel.setContent(content);
-            editDocumentDataModel.setUser(user);
-            editDocumentDataModel.setCreated(created);
-            editDocumentDataModel.setEnabled(enabled);
+            editDocumentDataModel.enabled = this.enabled;
+            editDocumentDataModel.rawContent = this.rawContent;
+            editDocumentDataModel.link = this.link;
+            editDocumentDataModel.created = this.created;
+            editDocumentDataModel.content = this.content;
+            editDocumentDataModel.lastModified = this.lastModified;
+            editDocumentDataModel.id = this.id;
+            editDocumentDataModel.title = this.title;
+            editDocumentDataModel.user = this.user;
             return editDocumentDataModel;
         }
     }

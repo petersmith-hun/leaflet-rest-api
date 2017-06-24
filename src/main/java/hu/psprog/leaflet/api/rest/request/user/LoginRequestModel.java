@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,15 +22,6 @@ public class LoginRequestModel implements Serializable {
     @NotEmpty
     private String password;
 
-    public LoginRequestModel() {
-        // Serializable
-    }
-
-    public LoginRequestModel(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -44,5 +36,13 @@ public class LoginRequestModel implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("email", email)
+                .append("password", "[hidden]")
+                .toString();
     }
 }

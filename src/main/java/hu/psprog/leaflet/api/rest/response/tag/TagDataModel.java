@@ -1,12 +1,17 @@
 package hu.psprog.leaflet.api.rest.response.tag;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Response data model for tags.
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = TagDataModel.TagDataModelBuilder.class)
 public class TagDataModel extends BaseBodyDataModel {
 
     private long id;
@@ -19,89 +24,107 @@ public class TagDataModel extends BaseBodyDataModel {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
     public String getLastModified() {
         return lastModified;
-    }
-
-    public void setLastModified(String lastModified) {
-        this.lastModified = lastModified;
     }
 
     public boolean isEnabled() {
         return isEnabled;
     }
 
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof TagDataModel)) return false;
+
+        TagDataModel that = (TagDataModel) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(isEnabled, that.isEnabled)
+                .append(name, that.name)
+                .append(created, that.created)
+                .append(lastModified, that.lastModified)
+                .isEquals();
     }
 
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(name)
+                .append(created)
+                .append(lastModified)
+                .append(isEnabled)
+                .toHashCode();
+    }
 
-    public static final class Builder {
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("name", name)
+                .append("created", created)
+                .append("lastModified", lastModified)
+                .append("isEnabled", isEnabled)
+                .toString();
+    }
+
+    public static TagDataModelBuilder getBuilder() {
+        return new TagDataModelBuilder();
+    }
+
+    public static final class TagDataModelBuilder {
         private long id;
         private String name;
         private String created;
         private String lastModified;
         private boolean isEnabled;
 
-        private Builder() {
+        private TagDataModelBuilder() {
         }
 
-        public static Builder getBuilder() {
-            return new Builder();
-        }
-
-        public Builder withId(long id) {
+        public TagDataModelBuilder withId(long id) {
             this.id = id;
             return this;
         }
 
-        public Builder withName(String name) {
+        public TagDataModelBuilder withName(String name) {
             this.name = name;
             return this;
         }
 
-        public Builder withCreated(String created) {
+        public TagDataModelBuilder withCreated(String created) {
             this.created = created;
             return this;
         }
 
-        public Builder withLastModified(String lastModified) {
+        public TagDataModelBuilder withLastModified(String lastModified) {
             this.lastModified = lastModified;
             return this;
         }
 
-        public Builder withIsEnabled(boolean isEnabled) {
+        public TagDataModelBuilder withIsEnabled(boolean isEnabled) {
             this.isEnabled = isEnabled;
             return this;
         }
 
         public TagDataModel build() {
             TagDataModel tagDataModel = new TagDataModel();
-            tagDataModel.setId(id);
-            tagDataModel.setName(name);
-            tagDataModel.setCreated(created);
-            tagDataModel.setLastModified(lastModified);
+            tagDataModel.id = this.id;
             tagDataModel.isEnabled = this.isEnabled;
+            tagDataModel.name = this.name;
+            tagDataModel.lastModified = this.lastModified;
+            tagDataModel.created = this.created;
             return tagDataModel;
         }
     }

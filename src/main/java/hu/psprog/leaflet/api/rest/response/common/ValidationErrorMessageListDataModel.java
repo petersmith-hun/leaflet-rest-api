@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = ValidationErrorMessageListDataModel.ValidationErrorMessageListDataModelBuilder.class)
 public class ValidationErrorMessageListDataModel extends BaseBodyDataModel {
 
     private List<ValidationErrorMessageDataModel> validation;
@@ -16,25 +19,25 @@ public class ValidationErrorMessageListDataModel extends BaseBodyDataModel {
         return validation;
     }
 
-    public void setValidation(List<ValidationErrorMessageDataModel> validation) {
-        this.validation = validation;
+    public static ValidationErrorMessageListDataModelBuilder getBuilder() {
+        return new ValidationErrorMessageListDataModelBuilder();
     }
 
-    public static final class Builder {
+    public static final class ValidationErrorMessageListDataModelBuilder {
         private List<ValidationErrorMessageDataModel> validation;
 
-        public Builder() {
+        private ValidationErrorMessageListDataModelBuilder() {
             validation = new LinkedList<>();
         }
 
-        public Builder withItem(ValidationErrorMessageDataModel validationErrorMessageDataModel) {
+        public ValidationErrorMessageListDataModelBuilder withItem(ValidationErrorMessageDataModel validationErrorMessageDataModel) {
             this.validation.add(validationErrorMessageDataModel);
             return this;
         }
 
         public ValidationErrorMessageListDataModel build() {
             ValidationErrorMessageListDataModel validationErrorMessageListDataModel = new ValidationErrorMessageListDataModel();
-            validationErrorMessageListDataModel.setValidation(validation);
+            validationErrorMessageListDataModel.validation = validation;
             return validationErrorMessageListDataModel;
         }
     }
