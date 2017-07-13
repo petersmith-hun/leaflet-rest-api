@@ -66,6 +66,11 @@ public class UserListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public UserListDataModelBuilder withUsers(List<UserDataModel> users) {
+            this.users = users;
+            return this;
+        }
+
         public UserListDataModel build() {
             UserListDataModel userListDataModel = new UserListDataModel();
             userListDataModel.users = users;

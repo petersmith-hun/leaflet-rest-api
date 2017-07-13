@@ -66,6 +66,11 @@ public class EntryListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public EntryListDataModelBuilder withEntries(List<EntryDataModel> entries) {
+            this.entries = entries;
+            return this;
+        }
+
         public EntryListDataModel build() {
             EntryListDataModel entryListDataModel = new EntryListDataModel();
             entryListDataModel.entries = entries;

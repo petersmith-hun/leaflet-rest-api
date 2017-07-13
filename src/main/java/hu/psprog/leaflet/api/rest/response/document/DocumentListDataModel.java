@@ -66,6 +66,11 @@ public class DocumentListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public DocumentListDataModelBuilder withDocuments(List<EditDocumentDataModel> documents) {
+            this.documents = documents;
+            return this;
+        }
+
         public DocumentListDataModel build() {
             DocumentListDataModel documentListDataModel = new DocumentListDataModel();
             documentListDataModel.documents = documents;

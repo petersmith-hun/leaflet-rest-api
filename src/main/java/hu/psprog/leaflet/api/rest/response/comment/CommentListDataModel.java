@@ -64,6 +64,11 @@ public class CommentListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public CommentListDataModelBuilder withComments(List<CommentDataModel> comments) {
+            this.comments = comments;
+            return this;
+        }
+
         public CommentListDataModel build() {
             CommentListDataModel commentListDataModel = new CommentListDataModel();
             commentListDataModel.comments = comments;

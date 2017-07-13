@@ -1,13 +1,10 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 /**
  * Body structure model for wrapped responses.
  *
  * @author Peter Smith
  */
-@JsonDeserialize(builder = WrapperBodyDataModel.WrapperBodyDataModelBuilder.class)
 public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyDataModel {
 
     private T body;
@@ -33,6 +30,22 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
 
     public static <T extends BaseBodyDataModel> WrapperBodyDataModelBuilder<T> getBuilder() {
         return new WrapperBodyDataModelBuilder<>();
+    }
+
+    public void setBody(T body) {
+        this.body = body;
+    }
+
+    public void setPagination(PaginationDataModel pagination) {
+        this.pagination = pagination;
+    }
+
+    public void setSeo(SEODataModel seo) {
+        this.seo = seo;
+    }
+
+    public void setError(ErrorMessageDataModel error) {
+        this.error = error;
     }
 
     /**

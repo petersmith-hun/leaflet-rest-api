@@ -64,6 +64,11 @@ public class DCPListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public DCPListDataModelBuilder withDcpStore(List<DCPDataModel> dcpStore) {
+            this.dcpStore = dcpStore;
+            return this;
+        }
+
         public DCPListDataModel build() {
             DCPListDataModel dCPListDataModel = new DCPListDataModel();
             dCPListDataModel.dcpStore = this.dcpStore;
