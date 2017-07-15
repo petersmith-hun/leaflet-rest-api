@@ -17,8 +17,8 @@ public class PaginationDataModel extends BaseBodyDataModel {
     private int pageCount;
     private int pageNumber;
     private int entityCountOnPage;
-    private boolean isFirst;
-    private boolean isLast;
+    private boolean first;
+    private boolean last;
     private boolean hasNext;
     private boolean hasPrevious;
 
@@ -39,11 +39,11 @@ public class PaginationDataModel extends BaseBodyDataModel {
     }
 
     public boolean isFirst() {
-        return isFirst;
+        return first;
     }
 
     public boolean isLast() {
-        return isLast;
+        return last;
     }
 
     public boolean isHasNext() {
@@ -67,8 +67,8 @@ public class PaginationDataModel extends BaseBodyDataModel {
                 .append(pageCount, that.pageCount)
                 .append(pageNumber, that.pageNumber)
                 .append(entityCountOnPage, that.entityCountOnPage)
-                .append(isFirst, that.isFirst)
-                .append(isLast, that.isLast)
+                .append(first, that.first)
+                .append(last, that.last)
                 .append(hasNext, that.hasNext)
                 .append(hasPrevious, that.hasPrevious)
                 .isEquals();
@@ -81,8 +81,8 @@ public class PaginationDataModel extends BaseBodyDataModel {
                 .append(pageCount)
                 .append(pageNumber)
                 .append(entityCountOnPage)
-                .append(isFirst)
-                .append(isLast)
+                .append(first)
+                .append(last)
                 .append(hasNext)
                 .append(hasPrevious)
                 .toHashCode();
@@ -95,8 +95,8 @@ public class PaginationDataModel extends BaseBodyDataModel {
                 .append("pageCount", pageCount)
                 .append("pageNumber", pageNumber)
                 .append("entityCountOnPage", entityCountOnPage)
-                .append("isFirst", isFirst)
-                .append("isLast", isLast)
+                .append("isFirst", first)
+                .append("isLast", last)
                 .append("hasNext", hasNext)
                 .append("hasPrevious", hasPrevious)
                 .toString();
@@ -139,12 +139,12 @@ public class PaginationDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public PaginationDataModelBuilder withIsFirst(boolean isFirst) {
+        public PaginationDataModelBuilder withFirst(boolean isFirst) {
             this.isFirst = isFirst;
             return this;
         }
 
-        public PaginationDataModelBuilder withIsLast(boolean isLast) {
+        public PaginationDataModelBuilder withLast(boolean isLast) {
             this.isLast = isLast;
             return this;
         }
@@ -162,8 +162,8 @@ public class PaginationDataModel extends BaseBodyDataModel {
         public PaginationDataModel build() {
             PaginationDataModel paginationDataModel = new PaginationDataModel();
             paginationDataModel.pageCount = this.pageCount;
-            paginationDataModel.isLast = this.isLast;
-            paginationDataModel.isFirst = this.isFirst;
+            paginationDataModel.last = this.isLast;
+            paginationDataModel.first = this.isFirst;
             paginationDataModel.hasPrevious = this.hasPrevious;
             paginationDataModel.entityCount = this.entityCount;
             paginationDataModel.entityCountOnPage = this.entityCountOnPage;
