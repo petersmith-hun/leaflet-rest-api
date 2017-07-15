@@ -66,6 +66,11 @@ public class TagListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public TagListDataModelBuilder withTags(List<TagDataModel> tags) {
+            this.tags = tags;
+            return this;
+        }
+
         public TagListDataModel build() {
             TagListDataModel tagListDataModel = new TagListDataModel();
             tagListDataModel.tags = tags;

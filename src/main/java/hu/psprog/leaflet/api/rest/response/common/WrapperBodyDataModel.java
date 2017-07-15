@@ -1,13 +1,14 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Body structure model for wrapped responses.
  *
  * @author Peter Smith
  */
-@JsonDeserialize(builder = WrapperBodyDataModel.WrapperBodyDataModelBuilder.class)
 public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyDataModel {
 
     private T body;
@@ -29,6 +30,58 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
 
     public ErrorMessageDataModel getError() {
         return error;
+    }
+
+    public void setBody(T body) {
+        this.body = body;
+    }
+
+    public void setPagination(PaginationDataModel pagination) {
+        this.pagination = pagination;
+    }
+
+    public void setSeo(SEODataModel seo) {
+        this.seo = seo;
+    }
+
+    public void setError(ErrorMessageDataModel error) {
+        this.error = error;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof WrapperBodyDataModel)) return false;
+
+        WrapperBodyDataModel<?> that = (WrapperBodyDataModel<?>) o;
+
+        return new EqualsBuilder()
+                .append(body, that.body)
+                .append(pagination, that.pagination)
+                .append(seo, that.seo)
+                .append(error, that.error)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(body)
+                .append(pagination)
+                .append(seo)
+                .append(error)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("body", body)
+                .append("pagination", pagination)
+                .append("seo", seo)
+                .append("error", error)
+                .toString();
     }
 
     public static <T extends BaseBodyDataModel> WrapperBodyDataModelBuilder<T> getBuilder() {

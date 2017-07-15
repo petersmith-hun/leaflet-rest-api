@@ -18,7 +18,7 @@ public class TagDataModel extends BaseBodyDataModel {
     private String name;
     private String created;
     private String lastModified;
-    private boolean isEnabled;
+    private boolean enabled;
 
     public long getId() {
         return id;
@@ -37,7 +37,7 @@ public class TagDataModel extends BaseBodyDataModel {
     }
 
     public boolean isEnabled() {
-        return isEnabled;
+        return enabled;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class TagDataModel extends BaseBodyDataModel {
 
         return new EqualsBuilder()
                 .append(id, that.id)
-                .append(isEnabled, that.isEnabled)
+                .append(enabled, that.enabled)
                 .append(name, that.name)
                 .append(created, that.created)
                 .append(lastModified, that.lastModified)
@@ -64,7 +64,7 @@ public class TagDataModel extends BaseBodyDataModel {
                 .append(name)
                 .append(created)
                 .append(lastModified)
-                .append(isEnabled)
+                .append(enabled)
                 .toHashCode();
     }
 
@@ -75,7 +75,7 @@ public class TagDataModel extends BaseBodyDataModel {
                 .append("name", name)
                 .append("created", created)
                 .append("lastModified", lastModified)
-                .append("isEnabled", isEnabled)
+                .append("isEnabled", enabled)
                 .toString();
     }
 
@@ -88,7 +88,7 @@ public class TagDataModel extends BaseBodyDataModel {
         private String name;
         private String created;
         private String lastModified;
-        private boolean isEnabled;
+        private boolean enabled;
 
         private TagDataModelBuilder() {
         }
@@ -113,15 +113,15 @@ public class TagDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public TagDataModelBuilder withIsEnabled(boolean isEnabled) {
-            this.isEnabled = isEnabled;
+        public TagDataModelBuilder withEnabled(boolean enabled) {
+            this.enabled = enabled;
             return this;
         }
 
         public TagDataModel build() {
             TagDataModel tagDataModel = new TagDataModel();
             tagDataModel.id = this.id;
-            tagDataModel.isEnabled = this.isEnabled;
+            tagDataModel.enabled = this.enabled;
             tagDataModel.name = this.name;
             tagDataModel.lastModified = this.lastModified;
             tagDataModel.created = this.created;

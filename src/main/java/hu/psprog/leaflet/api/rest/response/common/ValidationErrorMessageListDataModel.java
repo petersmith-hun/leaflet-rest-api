@@ -35,6 +35,11 @@ public class ValidationErrorMessageListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public ValidationErrorMessageListDataModelBuilder withValidation(List<ValidationErrorMessageDataModel> validation) {
+            this.validation = validation;
+            return this;
+        }
+
         public ValidationErrorMessageListDataModel build() {
             ValidationErrorMessageListDataModel validationErrorMessageListDataModel = new ValidationErrorMessageListDataModel();
             validationErrorMessageListDataModel.validation = validation;

@@ -69,6 +69,11 @@ public class FileListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public FileListDataModelBuilder withFiles(List<FileDataModel> files) {
+            this.files = files;
+            return this;
+        }
+
         public FileListDataModel build() {
             FileListDataModel fileListDataModel = new FileListDataModel();
             fileListDataModel.files = files;

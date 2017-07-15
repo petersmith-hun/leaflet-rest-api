@@ -69,6 +69,11 @@ public class CategoryListDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public CategoryListDataModelBuilder withCategories(List<CategoryDataModel> categories) {
+            this.categories = categories;
+            return this;
+        }
+
         public CategoryListDataModel build() {
             CategoryListDataModel categoryListDataModel = new CategoryListDataModel();
             categoryListDataModel.categories = categories;
