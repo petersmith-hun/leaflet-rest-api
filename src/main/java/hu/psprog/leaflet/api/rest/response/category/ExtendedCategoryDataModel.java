@@ -16,6 +16,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
     private String description;
     private String created;
     private String lastModified;
+    private boolean enabled;
 
     public String getDescription() {
         return description;
@@ -27,6 +28,10 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
 
     public String getLastModified() {
         return lastModified;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     @Override
@@ -42,6 +47,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
                 .append(description, that.description)
                 .append(created, that.created)
                 .append(lastModified, that.lastModified)
+                .append(enabled, that.enabled)
                 .isEquals();
     }
 
@@ -52,6 +58,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
                 .append(description)
                 .append(created)
                 .append(lastModified)
+                .append(enabled)
                 .toHashCode();
     }
 
@@ -65,6 +72,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
                 .append("created", created)
                 .append("title", getTitle())
                 .append("lastModified", lastModified)
+                .append("enabled", enabled)
                 .toString();
     }
 
@@ -81,6 +89,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
         private String description;
         private String created;
         private String lastModified;
+        private boolean enabled;
 
         private ExtendedCategoryDataModelBuilder() {
         }
@@ -110,6 +119,11 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
             return this;
         }
 
+        public ExtendedCategoryDataModelBuilder withEnabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
         public ExtendedCategoryDataModel build() {
             ExtendedCategoryDataModel extendedCategoryDataModel = new ExtendedCategoryDataModel();
             extendedCategoryDataModel.created = this.created;
@@ -117,6 +131,7 @@ public class ExtendedCategoryDataModel extends CategoryDataModel {
             extendedCategoryDataModel.description = this.description;
             extendedCategoryDataModel.id = this.id;
             extendedCategoryDataModel.title = this.title;
+            extendedCategoryDataModel.enabled = this.enabled;
             return extendedCategoryDataModel;
         }
     }
