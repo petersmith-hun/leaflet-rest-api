@@ -30,6 +30,7 @@ public class EntryDataModel extends BaseBodyDataModel {
     protected String created;
     protected String lastModified;
     protected List<FileDataModel> attachments;
+    protected String locale;
 
     public long getId() {
         return id;
@@ -71,6 +72,10 @@ public class EntryDataModel extends BaseBodyDataModel {
         return attachments;
     }
 
+    public String getLocale() {
+        return locale;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,6 +95,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append(created, that.created)
                 .append(lastModified, that.lastModified)
                 .append(attachments, that.attachments)
+                .append(locale, that.locale)
                 .isEquals();
     }
 
@@ -106,6 +112,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append(created)
                 .append(lastModified)
                 .append(attachments)
+                .append(locale)
                 .toHashCode();
     }
 
@@ -122,6 +129,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append("created", created)
                 .append("lastModified", lastModified)
                 .append("attachments", attachments)
+                .append("locale", locale)
                 .toString();
     }
 
@@ -140,6 +148,7 @@ public class EntryDataModel extends BaseBodyDataModel {
         private String created;
         private String lastModified;
         private List<FileDataModel> attachments;
+        private String locale;
 
         private EntryDataModelBuilder() {
         }
@@ -194,6 +203,11 @@ public class EntryDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public EntryDataModelBuilder withLocale(String locale) {
+            this.locale = locale;
+            return this;
+        }
+
         public EntryDataModel build() {
             EntryDataModel entryDataModel = new EntryDataModel();
             entryDataModel.link = this.link;
@@ -206,6 +220,7 @@ public class EntryDataModel extends BaseBodyDataModel {
             entryDataModel.attachments = this.attachments;
             entryDataModel.id = this.id;
             entryDataModel.tags = this.tags;
+            entryDataModel.locale = this.locale;
             return entryDataModel;
         }
     }

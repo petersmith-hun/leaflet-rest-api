@@ -77,6 +77,7 @@ public class EditEntryDataModel extends EntryDataModel {
                 .append("created", created)
                 .append("lastModified", lastModified)
                 .append("attachments", attachments)
+                .append("locale", locale)
                 .toString();
     }
 
@@ -98,6 +99,7 @@ public class EditEntryDataModel extends EntryDataModel {
         private String rawContent;
         private boolean enabled;
         private String entryStatus;
+        private String locale;
 
         private EditEntryDataModelBuilder() {
         }
@@ -167,6 +169,11 @@ public class EditEntryDataModel extends EntryDataModel {
             return this;
         }
 
+        public EditEntryDataModelBuilder withLocale(String locale) {
+            this.locale = locale;
+            return this;
+        }
+
         public EditEntryDataModel build() {
             EditEntryDataModel editEntryDataModel = new EditEntryDataModel();
             editEntryDataModel.link = this.link;
@@ -182,6 +189,7 @@ public class EditEntryDataModel extends EntryDataModel {
             editEntryDataModel.attachments = this.attachments;
             editEntryDataModel.entryStatus = this.entryStatus;
             editEntryDataModel.tags = this.tags;
+            editEntryDataModel.locale = this.locale;
             return editEntryDataModel;
         }
     }
