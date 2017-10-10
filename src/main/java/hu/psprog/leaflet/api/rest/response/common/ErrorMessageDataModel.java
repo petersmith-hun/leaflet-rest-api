@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.response.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -50,6 +51,7 @@ public class ErrorMessageDataModel extends BaseBodyDataModel {
         return new ErrorMessageDataModelBuilder();
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class ErrorMessageDataModelBuilder {
         private String message;
 
