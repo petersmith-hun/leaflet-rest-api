@@ -17,9 +17,9 @@ import java.util.List;
 @JsonDeserialize(builder = UserListDataModel.UserListDataModelBuilder.class)
 public class UserListDataModel extends BaseBodyDataModel {
 
-    private List<UserDataModel> users;
+    private List<ExtendedUserDataModel> users;
 
-    public List<UserDataModel> getUsers() {
+    public List<ExtendedUserDataModel> getUsers() {
         return users;
     }
 
@@ -55,18 +55,18 @@ public class UserListDataModel extends BaseBodyDataModel {
     }
 
     public static final class UserListDataModelBuilder {
-        private List<UserDataModel> users;
+        private List<ExtendedUserDataModel> users;
 
         private UserListDataModelBuilder() {
             users = new LinkedList<>();
         }
 
-        public UserListDataModelBuilder withItem(UserDataModel user) {
+        public UserListDataModelBuilder withItem(ExtendedUserDataModel user) {
             this.users.add(user);
             return this;
         }
 
-        public UserListDataModelBuilder withUsers(List<UserDataModel> users) {
+        public UserListDataModelBuilder withUsers(List<ExtendedUserDataModel> users) {
             this.users = users;
             return this;
         }
