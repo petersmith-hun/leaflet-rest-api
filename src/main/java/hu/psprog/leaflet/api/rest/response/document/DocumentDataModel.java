@@ -21,6 +21,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
     protected String content;
     protected UserDataModel user;
     protected String created;
+    protected String locale;
 
     public long getId() {
         return id;
@@ -46,6 +47,10 @@ public class DocumentDataModel extends BaseBodyDataModel {
         return created;
     }
 
+    public String getLocale() {
+        return locale;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +66,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append(content, that.content)
                 .append(user, that.user)
                 .append(created, that.created)
+                .append(locale, that.locale)
                 .isEquals();
     }
 
@@ -73,6 +79,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append(content)
                 .append(user)
                 .append(created)
+                .append(locale)
                 .toHashCode();
     }
 
@@ -85,6 +92,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append("content", content)
                 .append("user", user)
                 .append("created", created)
+                .append("locale", locale)
                 .toString();
     }
 
@@ -99,6 +107,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
         protected String content;
         protected UserDataModel user;
         protected String created;
+        protected String locale;
 
         private DocumentDataModelBuilder() {
         }
@@ -133,6 +142,11 @@ public class DocumentDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public DocumentDataModelBuilder withLocale(String locale) {
+            this.locale = locale;
+            return this;
+        }
+
         public DocumentDataModel build() {
             DocumentDataModel documentDataModel = new DocumentDataModel();
             documentDataModel.link = this.link;
@@ -141,6 +155,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
             documentDataModel.id = this.id;
             documentDataModel.title = this.title;
             documentDataModel.user = this.user;
+            documentDataModel.locale = this.locale;
             return documentDataModel;
         }
     }
