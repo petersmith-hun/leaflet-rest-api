@@ -68,6 +68,7 @@ public class EditDocumentDataModel extends DocumentDataModel {
                 .append("content", content)
                 .append("user", user)
                 .append("created", created)
+                .append("locale", locale)
                 .toString();
     }
 
@@ -82,6 +83,7 @@ public class EditDocumentDataModel extends DocumentDataModel {
         protected String content;
         protected UserDataModel user;
         protected String created;
+        protected String locale;
         private String rawContent;
         private String lastModified;
         private boolean enabled;
@@ -134,6 +136,11 @@ public class EditDocumentDataModel extends DocumentDataModel {
             return this;
         }
 
+        public EditDocumentDataModelBuilder withLocale(String locale) {
+            this.locale = locale;
+            return this;
+        }
+
         public EditDocumentDataModel build() {
             EditDocumentDataModel editDocumentDataModel = new EditDocumentDataModel();
             editDocumentDataModel.enabled = this.enabled;
@@ -145,6 +152,7 @@ public class EditDocumentDataModel extends DocumentDataModel {
             editDocumentDataModel.id = this.id;
             editDocumentDataModel.title = this.title;
             editDocumentDataModel.user = this.user;
+            editDocumentDataModel.locale = this.locale;
             return editDocumentDataModel;
         }
     }
