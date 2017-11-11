@@ -14,8 +14,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonDeserialize(builder = CategoryDataModel.CategoryDataModelBuilder.class)
 public class CategoryDataModel extends BaseBodyDataModel {
 
-    protected long id;
-    protected String title;
+    private long id;
+    private String title;
     private String description;
     private String created;
     private String lastModified;
@@ -95,8 +95,8 @@ public class CategoryDataModel extends BaseBodyDataModel {
      * Builder for {@link CategoryDataModel}.
      */
     public static final class CategoryDataModelBuilder {
-        protected long id;
-        protected String title;
+        private long id;
+        private String title;
         private String description;
         private String created;
         private String lastModified;
