@@ -16,6 +16,10 @@ public class CategoryDataModel extends BaseBodyDataModel {
 
     protected long id;
     protected String title;
+    private String description;
+    private String created;
+    private String lastModified;
+    private boolean enabled;
 
     public long getId() {
         return id;
@@ -25,17 +29,37 @@ public class CategoryDataModel extends BaseBodyDataModel {
         return title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public String getLastModified() {
+        return lastModified;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 
-        if (!(o instanceof CategoryDataModel)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         CategoryDataModel that = (CategoryDataModel) o;
 
         return new EqualsBuilder()
                 .append(id, that.id)
+                .append(enabled, that.enabled)
                 .append(title, that.title)
+                .append(description, that.description)
+                .append(created, that.created)
+                .append(lastModified, that.lastModified)
                 .isEquals();
     }
 
@@ -44,6 +68,10 @@ public class CategoryDataModel extends BaseBodyDataModel {
         return new HashCodeBuilder(17, 37)
                 .append(id)
                 .append(title)
+                .append(description)
+                .append(created)
+                .append(lastModified)
+                .append(enabled)
                 .toHashCode();
     }
 
@@ -52,6 +80,10 @@ public class CategoryDataModel extends BaseBodyDataModel {
         return new ToStringBuilder(this)
                 .append("id", id)
                 .append("title", title)
+                .append("description", description)
+                .append("created", created)
+                .append("lastModified", lastModified)
+                .append("enabled", enabled)
                 .toString();
     }
 
@@ -63,8 +95,12 @@ public class CategoryDataModel extends BaseBodyDataModel {
      * Builder for {@link CategoryDataModel}.
      */
     public static final class CategoryDataModelBuilder {
-        private long id;
-        private String title;
+        protected long id;
+        protected String title;
+        private String description;
+        private String created;
+        private String lastModified;
+        private boolean enabled;
 
         private CategoryDataModelBuilder() {
         }
@@ -79,10 +115,34 @@ public class CategoryDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public CategoryDataModelBuilder withDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public CategoryDataModelBuilder withCreated(String created) {
+            this.created = created;
+            return this;
+        }
+
+        public CategoryDataModelBuilder withLastModified(String lastModified) {
+            this.lastModified = lastModified;
+            return this;
+        }
+
+        public CategoryDataModelBuilder withEnabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
         public CategoryDataModel build() {
             CategoryDataModel categoryDataModel = new CategoryDataModel();
+            categoryDataModel.lastModified = this.lastModified;
+            categoryDataModel.enabled = this.enabled;
+            categoryDataModel.description = this.description;
             categoryDataModel.title = this.title;
             categoryDataModel.id = this.id;
+            categoryDataModel.created = this.created;
             return categoryDataModel;
         }
     }
