@@ -18,6 +18,7 @@ public class FileDataModel extends BaseBodyDataModel {
     private String reference;
     private String acceptedAs;
     private String description;
+    private String path;
 
     public String getOriginalFilename() {
         return originalFilename;
@@ -35,6 +36,10 @@ public class FileDataModel extends BaseBodyDataModel {
         return description;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,6 +53,7 @@ public class FileDataModel extends BaseBodyDataModel {
                 .append(reference, that.reference)
                 .append(acceptedAs, that.acceptedAs)
                 .append(description, that.description)
+                .append(path, that.path)
                 .isEquals();
     }
 
@@ -58,6 +64,7 @@ public class FileDataModel extends BaseBodyDataModel {
                 .append(reference)
                 .append(acceptedAs)
                 .append(description)
+                .append(path)
                 .toHashCode();
     }
 
@@ -68,6 +75,7 @@ public class FileDataModel extends BaseBodyDataModel {
                 .append("reference", reference)
                 .append("acceptedAs", acceptedAs)
                 .append("description", description)
+                .append("path", path)
                 .toString();
     }
 
@@ -83,6 +91,7 @@ public class FileDataModel extends BaseBodyDataModel {
         private String reference;
         private String acceptedAs;
         private String description;
+        private String path;
 
         private FileDataModelBuilder() {
         }
@@ -107,12 +116,18 @@ public class FileDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public FileDataModelBuilder withPath(String path) {
+            this.path = path;
+            return this;
+        }
+
         public FileDataModel build() {
             FileDataModel fileDataModel = new FileDataModel();
             fileDataModel.originalFilename = originalFilename;
             fileDataModel.reference = reference;
             fileDataModel.acceptedAs = acceptedAs;
             fileDataModel.description = description;
+            fileDataModel.path = path;
             return fileDataModel;
         }
     }
