@@ -18,6 +18,7 @@ public class DirectoryDataModel {
     private String id;
     private String root;
     private List<String> children;
+    private List<String> acceptableMimeTypes;
 
     public String getId() {
         return id;
@@ -29,6 +30,10 @@ public class DirectoryDataModel {
 
     public List<String> getChildren() {
         return children;
+    }
+
+    public List<String> getAcceptableMimeTypes() {
+        return acceptableMimeTypes;
     }
 
     @Override
@@ -43,6 +48,7 @@ public class DirectoryDataModel {
                 .append(id, that.id)
                 .append(root, that.root)
                 .append(children, that.children)
+                .append(acceptableMimeTypes, that.acceptableMimeTypes)
                 .isEquals();
     }
 
@@ -52,6 +58,7 @@ public class DirectoryDataModel {
                 .append(id)
                 .append(root)
                 .append(children)
+                .append(acceptableMimeTypes)
                 .toHashCode();
     }
 
@@ -61,6 +68,7 @@ public class DirectoryDataModel {
                 .append("id", id)
                 .append("root", root)
                 .append("children", children)
+                .append("acceptableMimeTypes", acceptableMimeTypes)
                 .toString();
     }
 
@@ -75,6 +83,7 @@ public class DirectoryDataModel {
         private String id;
         private String root;
         private List<String> children;
+        private List<String> acceptableMimeTypes;
 
         private DirectoryDataModelBuilder() {
         }
@@ -94,11 +103,17 @@ public class DirectoryDataModel {
             return this;
         }
 
+        public DirectoryDataModelBuilder withAcceptableMimeTypes(List<String> acceptableMimeTypes) {
+            this.acceptableMimeTypes = acceptableMimeTypes;
+            return this;
+        }
+
         public DirectoryDataModel build() {
             DirectoryDataModel directoryDataModel = new DirectoryDataModel();
             directoryDataModel.children = this.children;
             directoryDataModel.id = this.id;
             directoryDataModel.root = this.root;
+            directoryDataModel.acceptableMimeTypes = this.acceptableMimeTypes;
             return directoryDataModel;
         }
     }
