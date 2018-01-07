@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.category;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -38,6 +40,28 @@ public class CategoryCreateRequestModel implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CategoryCreateRequestModel that = (CategoryCreateRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(title, that.title)
+                .append(description, that.description)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(title)
+                .append(description)
+                .toHashCode();
     }
 
     @Override

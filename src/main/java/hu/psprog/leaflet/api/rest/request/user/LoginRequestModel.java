@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -36,6 +38,28 @@ public class LoginRequestModel implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LoginRequestModel that = (LoginRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(email, that.email)
+                .append(password, that.password)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(email)
+                .append(password)
+                .toHashCode();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.tag;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.Min;
@@ -35,6 +37,28 @@ public class TagAssignmentRequestModel implements Serializable {
 
     public void setTagID(Long tagID) {
         this.tagID = tagID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TagAssignmentRequestModel that = (TagAssignmentRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(entryID, that.entryID)
+                .append(tagID, that.tagID)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(entryID)
+                .append(tagID)
+                .toHashCode();
     }
 
     @Override

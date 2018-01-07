@@ -1,6 +1,8 @@
 package hu.psprog.leaflet.api.rest.request.entry;
 
 import hu.psprog.leaflet.api.rest.request.common.SEOValuesRequestModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -121,6 +123,44 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setStatus(EntryInitialStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EntryUpdateRequestModel that = (EntryUpdateRequestModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(enabled, that.enabled)
+                .append(title, that.title)
+                .append(link, that.link)
+                .append(prologue, that.prologue)
+                .append(content, that.content)
+                .append(rawContent, that.rawContent)
+                .append(categoryID, that.categoryID)
+                .append(locale, that.locale)
+                .append(status, that.status)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(title)
+                .append(link)
+                .append(prologue)
+                .append(content)
+                .append(rawContent)
+                .append(categoryID)
+                .append(locale)
+                .append(enabled)
+                .append(status)
+                .toHashCode();
     }
 
     @Override

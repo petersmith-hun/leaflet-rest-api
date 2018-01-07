@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +24,28 @@ public class UserCreateRequestModel extends UserInitializeRequestModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserCreateRequestModel that = (UserCreateRequestModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(role, that.role)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(role)
+                .toHashCode();
     }
 
     @Override

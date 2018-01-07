@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.comment;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,26 @@ public class CommentUpdateRequestModel implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CommentUpdateRequestModel that = (CommentUpdateRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(content, that.content)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(content)
+                .toHashCode();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -52,6 +54,30 @@ public class UpdateProfileRequestModel implements Serializable {
 
     public void setDefaultLocale(Locale defaultLocale) {
         this.defaultLocale = defaultLocale;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UpdateProfileRequestModel that = (UpdateProfileRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(username, that.username)
+                .append(email, that.email)
+                .append(defaultLocale, that.defaultLocale)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(username)
+                .append(email)
+                .append(defaultLocale)
+                .toHashCode();
     }
 
     @Override

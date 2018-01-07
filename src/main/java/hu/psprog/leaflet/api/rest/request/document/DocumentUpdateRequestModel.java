@@ -1,6 +1,8 @@
 package hu.psprog.leaflet.api.rest.request.document;
 
 import hu.psprog.leaflet.api.rest.request.common.SEOValuesRequestModel;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -85,6 +87,38 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DocumentUpdateRequestModel that = (DocumentUpdateRequestModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(enabled, that.enabled)
+                .append(title, that.title)
+                .append(link, that.link)
+                .append(content, that.content)
+                .append(rawContent, that.rawContent)
+                .append(locale, that.locale)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(title)
+                .append(link)
+                .append(content)
+                .append(rawContent)
+                .append(locale)
+                .append(enabled)
+                .toHashCode();
     }
 
     @Override
