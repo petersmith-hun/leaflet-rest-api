@@ -1,5 +1,7 @@
 package hu.psprog.leaflet.api.rest.request.attachment;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.Min;
@@ -35,6 +37,28 @@ public class AttachmentRequestModel implements Serializable {
 
     public void setPathUUID(UUID pathUUID) {
         this.pathUUID = pathUUID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AttachmentRequestModel that = (AttachmentRequestModel) o;
+
+        return new EqualsBuilder()
+                .append(entryID, that.entryID)
+                .append(pathUUID, that.pathUUID)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(entryID)
+                .append(pathUUID)
+                .toHashCode();
     }
 
     @Override

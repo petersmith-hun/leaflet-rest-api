@@ -2,6 +2,8 @@ package hu.psprog.leaflet.api.rest.request.comment;
 
 import hu.psprog.leaflet.api.rest.request.common.AuthenticatedRequestModel;
 import hu.psprog.leaflet.api.rest.request.validator.CommentUserDataCheck;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.validation.constraints.Min;
@@ -54,6 +56,34 @@ public class CommentCreateRequestModel extends CommentUpdateRequestModel impleme
 
     public void setEntryId(Long entryId) {
         this.entryId = entryId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CommentCreateRequestModel that = (CommentCreateRequestModel) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(authenticatedUserId, that.authenticatedUserId)
+                .append(email, that.email)
+                .append(username, that.username)
+                .append(entryId, that.entryId)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(authenticatedUserId)
+                .append(email)
+                .append(username)
+                .append(entryId)
+                .toHashCode();
     }
 
     @Override
