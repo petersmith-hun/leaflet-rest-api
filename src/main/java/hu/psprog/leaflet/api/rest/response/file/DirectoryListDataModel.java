@@ -1,6 +1,7 @@
 package hu.psprog.leaflet.api.rest.response.file;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -14,7 +15,7 @@ import java.util.List;
  * @author Peter Smith
  */
 @JsonDeserialize(builder = DirectoryListDataModel.DirectoryListDataModelBuilder.class)
-public class DirectoryListDataModel {
+public class DirectoryListDataModel extends BaseBodyDataModel {
 
     private List<DirectoryDataModel> acceptors;
 
