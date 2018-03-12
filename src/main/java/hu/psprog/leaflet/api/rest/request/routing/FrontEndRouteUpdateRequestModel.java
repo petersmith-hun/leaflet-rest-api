@@ -16,6 +16,9 @@ import java.io.Serializable;
 public class FrontEndRouteUpdateRequestModel implements Serializable {
 
     @NotEmpty
+    private String routeId;
+
+    @NotEmpty
     private String name;
 
     @NotEmpty
@@ -26,6 +29,14 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
 
     @NotEmpty
     private String type;
+
+    public String getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(String routeId) {
+        this.routeId = routeId;
+    }
 
     public String getName() {
         return name;
@@ -68,6 +79,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
         FrontEndRouteUpdateRequestModel that = (FrontEndRouteUpdateRequestModel) o;
 
         return new EqualsBuilder()
+                .append(routeId, that.routeId)
                 .append(sequenceNumber, that.sequenceNumber)
                 .append(name, that.name)
                 .append(url, that.url)
@@ -78,6 +90,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
+                .append(routeId)
                 .append(name)
                 .append(url)
                 .append(sequenceNumber)
@@ -88,6 +101,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
+                .append("routeId", routeId)
                 .append("name", name)
                 .append("url", url)
                 .append("sequenceNumber", sequenceNumber)

@@ -85,6 +85,7 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
                 .append("enabled", enabled)
                 .append("name", name)
                 .append("url", url)
+                .append("routeId", routeId)
                 .toString();
     }
 
@@ -96,6 +97,7 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
      * Builder for {@link ExtendedFrontEndRouteDataModel}.
      */
     public static final class ExtendedFrontEndRouteDataModelBuilder {
+        private String routeId;
         private String name;
         private String url;
         private long id;
@@ -148,8 +150,14 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
             return this;
         }
 
+        public ExtendedFrontEndRouteDataModelBuilder withRouteId(String routeId) {
+            this.routeId = routeId;
+            return this;
+        }
+
         public ExtendedFrontEndRouteDataModel build() {
             ExtendedFrontEndRouteDataModel extendedFrontEndRouteDataModel = new ExtendedFrontEndRouteDataModel();
+            extendedFrontEndRouteDataModel.routeId = this.routeId;
             extendedFrontEndRouteDataModel.name = this.name;
             extendedFrontEndRouteDataModel.lastModified = this.lastModified;
             extendedFrontEndRouteDataModel.url = this.url;
