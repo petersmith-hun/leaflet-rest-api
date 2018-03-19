@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.response.routing;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  * @author Peter Smith
  */
+@JsonDeserialize(builder = ExtendedFrontEndRouteDataModel.ExtendedFrontEndRouteDataModelBuilder.class)
 public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
 
     private long id;

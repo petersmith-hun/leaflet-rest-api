@@ -18,7 +18,7 @@ public class ExtendedFrontEndRouteListDataModel extends FrontEndRouteListDataMod
     }
 
     public static final class ExtendedFrontEndRouteListDataModelBuilder {
-        private List<FrontEndRouteDataModel> routes;
+        private List<ExtendedFrontEndRouteDataModel> routes;
 
         private ExtendedFrontEndRouteListDataModelBuilder() {
             routes = new LinkedList<>();
@@ -29,7 +29,7 @@ public class ExtendedFrontEndRouteListDataModel extends FrontEndRouteListDataMod
             return this;
         }
 
-        public ExtendedFrontEndRouteListDataModel.ExtendedFrontEndRouteListDataModelBuilder withRoutes(List<FrontEndRouteDataModel> routes) {
+        public ExtendedFrontEndRouteListDataModel.ExtendedFrontEndRouteListDataModelBuilder withRoutes(List<ExtendedFrontEndRouteDataModel> routes) {
             this.routes = routes;
             return this;
         }

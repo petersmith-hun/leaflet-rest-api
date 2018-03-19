@@ -17,9 +17,9 @@ import java.util.List;
 @JsonDeserialize(builder = FrontEndRouteListDataModel.FrontEndRouteListDataModelBuilder.class)
 public class FrontEndRouteListDataModel extends BaseBodyDataModel {
 
-    protected List<FrontEndRouteDataModel> routes;
+    protected List<? extends FrontEndRouteDataModel> routes;
 
-    public List<FrontEndRouteDataModel> getRoutes() {
+    public List<? extends FrontEndRouteDataModel> getRoutes() {
         return routes;
     }
 
