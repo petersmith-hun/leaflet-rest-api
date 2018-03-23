@@ -15,6 +15,7 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
     private PaginationDataModel pagination;
     private SEODataModel seo;
     private ErrorMessageDataModel error;
+    private MenuDataModel menu;
 
     public T getBody() {
         return body;
@@ -48,6 +49,14 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
         this.error = error;
     }
 
+    public MenuDataModel getMenu() {
+        return menu;
+    }
+
+    public void setMenu(MenuDataModel menu) {
+        this.menu = menu;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +70,7 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
                 .append(pagination, that.pagination)
                 .append(seo, that.seo)
                 .append(error, that.error)
+                .append(menu, that.menu)
                 .isEquals();
     }
 
@@ -71,6 +81,7 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
                 .append(pagination)
                 .append(seo)
                 .append(error)
+                .append(menu)
                 .toHashCode();
     }
 
@@ -81,6 +92,7 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
                 .append("pagination", pagination)
                 .append("seo", seo)
                 .append("error", error)
+                .append("menu", menu)
                 .toString();
     }
 
@@ -96,6 +108,7 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
         private PaginationDataModel pagination;
         private SEODataModel seo;
         private ErrorMessageDataModel error;
+        private MenuDataModel menu;
 
         private WrapperBodyDataModelBuilder() {
         }
@@ -120,12 +133,18 @@ public class WrapperBodyDataModel<T extends BaseBodyDataModel> extends BaseBodyD
             return this;
         }
 
+        public WrapperBodyDataModelBuilder withMenu(MenuDataModel menu) {
+            this.menu = menu;
+            return this;
+        }
+
         public WrapperBodyDataModel build() {
             WrapperBodyDataModel wrapperBodyDataModel = new WrapperBodyDataModel();
             wrapperBodyDataModel.body = body;
             wrapperBodyDataModel.pagination = pagination;
             wrapperBodyDataModel.seo = seo;
             wrapperBodyDataModel.error = error;
+            wrapperBodyDataModel.menu = menu;
             return wrapperBodyDataModel;
         }
     }
