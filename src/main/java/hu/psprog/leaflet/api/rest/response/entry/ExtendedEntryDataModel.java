@@ -19,10 +19,10 @@ import java.util.List;
 @JsonDeserialize(builder = ExtendedEntryDataModel.ExtendedEntryDataModelBuilder.class)
 public class ExtendedEntryDataModel extends EntryDataModel {
 
-    private String content;
+    private String rawContent;
 
-    public String getContent() {
-        return content;
+    public String getRawContent() {
+        return rawContent;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
 
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(content, that.content)
+                .append(rawContent, that.rawContent)
                 .isEquals();
     }
 
@@ -48,14 +48,14 @@ public class ExtendedEntryDataModel extends EntryDataModel {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(content)
+                .append(rawContent)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("content", content)
+                .append("rawContent", rawContent)
                 .append("id", id)
                 .append("title", title)
                 .append("link", link)
@@ -84,15 +84,15 @@ public class ExtendedEntryDataModel extends EntryDataModel {
         private CategoryDataModel category;
         private String created;
         private List<FileDataModel> attachments;
-        private String content;
+        private String rawContent;
         private String lastModified;
         private String locale;
 
         private ExtendedEntryDataModelBuilder() {
         }
 
-        public ExtendedEntryDataModelBuilder withContent(String content) {
-            this.content = content;
+        public ExtendedEntryDataModelBuilder withRawContent(String rawContent) {
+            this.rawContent = rawContent;
             return this;
         }
 
@@ -156,7 +156,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             extendedEntryDataModel.link = this.link;
             extendedEntryDataModel.prologue = this.prologue;
             extendedEntryDataModel.lastModified = this.lastModified;
-            extendedEntryDataModel.content = this.content;
+            extendedEntryDataModel.rawContent = this.rawContent;
             extendedEntryDataModel.id = this.id;
             extendedEntryDataModel.user = this.user;
             extendedEntryDataModel.category = this.category;

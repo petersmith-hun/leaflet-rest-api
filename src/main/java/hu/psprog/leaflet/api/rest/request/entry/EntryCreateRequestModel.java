@@ -58,7 +58,6 @@ public class EntryCreateRequestModel extends EntryUpdateRequestModel {
                 .append("title", getTitle())
                 .append("link", getLink())
                 .append("prologue", getPrologue())
-                .append("content", getContent())
                 .append("rawContent", getRawContent())
                 .append("categoryID", getCategoryID())
                 .append("locale", getLocale())

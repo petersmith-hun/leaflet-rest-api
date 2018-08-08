@@ -14,13 +14,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonDeserialize(builder = EditDocumentDataModel.EditDocumentDataModelBuilder.class)
 public class EditDocumentDataModel extends DocumentDataModel {
 
-    private String rawContent;
     private String lastModified;
     private boolean enabled;
-
-    public String getRawContent() {
-        return rawContent;
-    }
 
     public String getLastModified() {
         return lastModified;
@@ -41,7 +36,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
                 .append(enabled, that.enabled)
-                .append(rawContent, that.rawContent)
                 .append(lastModified, that.lastModified)
                 .isEquals();
     }
@@ -50,7 +44,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(rawContent)
                 .append(lastModified)
                 .append(enabled)
                 .toHashCode();
@@ -65,7 +58,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
                 .append("id", id)
                 .append("title", title)
                 .append("link", link)
-                .append("content", content)
                 .append("user", user)
                 .append("created", created)
                 .append("locale", locale)
@@ -80,7 +72,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
         protected long id;
         protected String title;
         protected String link;
-        protected String content;
         protected UserDataModel user;
         protected String created;
         protected String locale;
@@ -121,11 +112,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
             return this;
         }
 
-        public EditDocumentDataModelBuilder withContent(String content) {
-            this.content = content;
-            return this;
-        }
-
         public EditDocumentDataModelBuilder withUser(UserDataModel user) {
             this.user = user;
             return this;
@@ -147,7 +133,6 @@ public class EditDocumentDataModel extends DocumentDataModel {
             editDocumentDataModel.rawContent = this.rawContent;
             editDocumentDataModel.link = this.link;
             editDocumentDataModel.created = this.created;
-            editDocumentDataModel.content = this.content;
             editDocumentDataModel.lastModified = this.lastModified;
             editDocumentDataModel.id = this.id;
             editDocumentDataModel.title = this.title;
