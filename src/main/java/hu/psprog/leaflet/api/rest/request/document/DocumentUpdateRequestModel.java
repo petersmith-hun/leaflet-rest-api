@@ -29,10 +29,6 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
 
     @NotNull
     @NotEmpty
-    private String content;
-
-    @NotNull
-    @NotEmpty
     private String rawContent;
 
     @NotNull
@@ -55,14 +51,6 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getRawContent() {
@@ -102,7 +90,6 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
                 .append(enabled, that.enabled)
                 .append(title, that.title)
                 .append(link, that.link)
-                .append(content, that.content)
                 .append(rawContent, that.rawContent)
                 .append(locale, that.locale)
                 .isEquals();
@@ -114,7 +101,6 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
                 .appendSuper(super.hashCode())
                 .append(title)
                 .append(link)
-                .append(content)
                 .append(rawContent)
                 .append(locale)
                 .append(enabled)
@@ -128,7 +114,6 @@ public class DocumentUpdateRequestModel extends SEOValuesRequestModel {
                 .append("title", title)
                 .append("metaDescription", getMetaDescription())
                 .append("link", link)
-                .append("content", content)
                 .append("rawContent", rawContent)
                 .append("locale", locale)
                 .append("metaKeywords", getMetaKeywords())

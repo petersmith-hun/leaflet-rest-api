@@ -6,7 +6,7 @@
 
     <groupId>hu.psprog.leaflet</groupId>
     <artifactId>leaflet-rest-api</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 
     <properties>
         <!-- Java environment version -->

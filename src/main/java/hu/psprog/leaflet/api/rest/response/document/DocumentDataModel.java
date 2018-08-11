@@ -18,7 +18,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
     protected long id;
     protected String title;
     protected String link;
-    protected String content;
+    protected String rawContent;
     protected UserDataModel user;
     protected String created;
     protected String locale;
@@ -35,8 +35,8 @@ public class DocumentDataModel extends BaseBodyDataModel {
         return link;
     }
 
-    public String getContent() {
-        return content;
+    public String getRawContent() {
+        return rawContent;
     }
 
     public UserDataModel getUser() {
@@ -63,7 +63,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append(id, that.id)
                 .append(title, that.title)
                 .append(link, that.link)
-                .append(content, that.content)
+                .append(rawContent, that.rawContent)
                 .append(user, that.user)
                 .append(created, that.created)
                 .append(locale, that.locale)
@@ -76,7 +76,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append(id)
                 .append(title)
                 .append(link)
-                .append(content)
+                .append(rawContent)
                 .append(user)
                 .append(created)
                 .append(locale)
@@ -89,7 +89,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
                 .append("id", id)
                 .append("title", title)
                 .append("link", link)
-                .append("content", content)
+                .append("rawContent", rawContent)
                 .append("user", user)
                 .append("created", created)
                 .append("locale", locale)
@@ -104,7 +104,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
         protected long id;
         protected String title;
         protected String link;
-        protected String content;
+        protected String rawContent;
         protected UserDataModel user;
         protected String created;
         protected String locale;
@@ -127,8 +127,8 @@ public class DocumentDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public DocumentDataModelBuilder withContent(String content) {
-            this.content = content;
+        public DocumentDataModelBuilder withRawContent(String rawContent) {
+            this.rawContent = rawContent;
             return this;
         }
 
@@ -151,7 +151,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
             DocumentDataModel documentDataModel = new DocumentDataModel();
             documentDataModel.link = this.link;
             documentDataModel.created = this.created;
-            documentDataModel.content = this.content;
+            documentDataModel.rawContent = this.rawContent;
             documentDataModel.id = this.id;
             documentDataModel.title = this.title;
             documentDataModel.user = this.user;

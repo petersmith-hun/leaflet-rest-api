@@ -57,7 +57,6 @@ public class DocumentCreateRequestModel extends DocumentUpdateRequestModel {
                 .append("metaKeywords", getMetaKeywords())
                 .append("title", getTitle())
                 .append("link", getLink())
-                .append("content", getContent())
                 .append("rawContent", getRawContent())
                 .append("locale", getLocale())
                 .append("enabled", isEnabled())

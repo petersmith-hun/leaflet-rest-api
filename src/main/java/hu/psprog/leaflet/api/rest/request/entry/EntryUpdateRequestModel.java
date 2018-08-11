@@ -34,10 +34,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     @NotNull
     @NotEmpty
-    private String content;
-
-    @NotNull
-    @NotEmpty
     private String rawContent;
 
     @NotNull
@@ -75,14 +71,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
 
     public void setPrologue(String prologue) {
         this.prologue = prologue;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public String getRawContent() {
@@ -139,7 +127,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
                 .append(title, that.title)
                 .append(link, that.link)
                 .append(prologue, that.prologue)
-                .append(content, that.content)
                 .append(rawContent, that.rawContent)
                 .append(categoryID, that.categoryID)
                 .append(locale, that.locale)
@@ -154,7 +141,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
                 .append(title)
                 .append(link)
                 .append(prologue)
-                .append(content)
                 .append(rawContent)
                 .append(categoryID)
                 .append(locale)
@@ -171,7 +157,6 @@ public class EntryUpdateRequestModel extends SEOValuesRequestModel {
                 .append("metaDescription", getMetaDescription())
                 .append("link", link)
                 .append("prologue", prologue)
-                .append("content", content)
                 .append("metaKeywords", getMetaKeywords())
                 .append("rawContent", rawContent)
                 .append("categoryID", categoryID)
