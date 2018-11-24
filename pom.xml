@@ -20,6 +20,7 @@
         <commons.lang.version>3.8.1</commons.lang.version>
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 
         <!-- test dependencies -->
         <junit.version>4.12</junit.version>
@@ -62,6 +63,11 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
