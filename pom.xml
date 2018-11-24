@@ -6,25 +6,25 @@
 
     <groupId>hu.psprog.leaflet</groupId>
     <artifactId>leaflet-rest-api</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
 
     <properties>
         <!-- Java environment version -->
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
 
         <!-- compiler settings -->
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
         <!-- other dependencies -->
-        <commons.lang.version>3.6</commons.lang.version>
-        <hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+        <commons.lang.version>3.8.1</commons.lang.version>
+        <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 
         <!-- test dependencies -->
         <junit.version>4.12</junit.version>
-        <jackson-databind.version>2.8.9</jackson-databind.version>
-        <spring-webmvc.version>4.3.9.RELEASE</spring-webmvc.version>
+        <jackson-databind.version>2.9.7</jackson-databind.version>
+        <spring-webmvc.version>5.1.2.RELEASE</spring-webmvc.version>
     </properties>
 
     <dependencies>
