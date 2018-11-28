@@ -1,7 +1,7 @@
 module leaflet.component.rest.backend.api {
     requires java.validation;
     requires com.fasterxml.jackson.databind;
-    requires jackson.annotations;
+    requires com.fasterxml.jackson.annotation;
     requires org.apache.commons.lang3;
     requires org.hibernate.validator;
     requires spring.web;
