@@ -1,4 +1,4 @@
-module leaflet.component.rest.backend.api {
+open module leaflet.component.rest.backend.api {
     requires java.validation;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
