@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -13,8 +14,13 @@ import java.io.Serializable;
  */
 public class SEOValuesRequestModel implements Serializable {
 
+    @Size(max = 255)
     private String metaTitle;
+
+    @Size(max = 4095)
     private String metaDescription;
+
+    @Size(max = 255)
     private String metaKeywords;
 
     public String getMetaTitle() {
