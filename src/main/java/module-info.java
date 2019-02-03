@@ -10,6 +10,7 @@ open module leaflet.component.rest.backend.api {
     exports hu.psprog.leaflet.api.rest.request.category;
     exports hu.psprog.leaflet.api.rest.request.comment;
     exports hu.psprog.leaflet.api.rest.request.common;
+    exports hu.psprog.leaflet.api.rest.request.contact;
     exports hu.psprog.leaflet.api.rest.request.dcp;
     exports hu.psprog.leaflet.api.rest.request.document;
     exports hu.psprog.leaflet.api.rest.request.entry;
