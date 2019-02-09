@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response data model for document editor returning RAW_CONTENT instead of rendered content.
  *
@@ -14,10 +16,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonDeserialize(builder = EditDocumentDataModel.EditDocumentDataModelBuilder.class)
 public class EditDocumentDataModel extends DocumentDataModel {
 
-    private String lastModified;
+    private ZonedDateTime lastModified;
     private boolean enabled;
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -73,10 +75,10 @@ public class EditDocumentDataModel extends DocumentDataModel {
         protected String title;
         protected String link;
         protected UserDataModel user;
-        protected String created;
+        protected ZonedDateTime created;
         protected String locale;
         private String rawContent;
-        private String lastModified;
+        private ZonedDateTime lastModified;
         private boolean enabled;
 
         private EditDocumentDataModelBuilder() {
@@ -92,7 +94,7 @@ public class EditDocumentDataModel extends DocumentDataModel {
             return this;
         }
 
-        public EditDocumentDataModelBuilder withLastModified(String lastModified) {
+        public EditDocumentDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }
@@ -117,7 +119,7 @@ public class EditDocumentDataModel extends DocumentDataModel {
             return this;
         }
 
-        public EditDocumentDataModelBuilder withCreated(String created) {
+        public EditDocumentDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }

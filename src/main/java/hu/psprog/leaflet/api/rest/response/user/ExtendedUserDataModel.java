@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Extended user details data response model.
  *
@@ -16,9 +18,9 @@ public class ExtendedUserDataModel extends UserDataModel {
     private String email;
     private String role;
     private String locale;
-    private String created;
-    private String lastLogin;
-    private String lastModified;
+    private ZonedDateTime created;
+    private ZonedDateTime lastLogin;
+    private ZonedDateTime lastModified;
 
     public String getEmail() {
         return email;
@@ -32,15 +34,15 @@ public class ExtendedUserDataModel extends UserDataModel {
         return locale;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
-    public String getLastLogin() {
+    public ZonedDateTime getLastLogin() {
         return lastLogin;
     }
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -100,9 +102,9 @@ public class ExtendedUserDataModel extends UserDataModel {
         private String email;
         private String role;
         private String locale;
-        private String created;
-        private String lastLogin;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastLogin;
+        private ZonedDateTime lastModified;
 
         private ExtendedUserDataModelBuilder() {
         }
@@ -132,17 +134,17 @@ public class ExtendedUserDataModel extends UserDataModel {
             return this;
         }
 
-        public ExtendedUserDataModelBuilder withCreated(String created) {
+        public ExtendedUserDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public ExtendedUserDataModelBuilder withLastLogin(String lastLogin) {
+        public ExtendedUserDataModelBuilder withLastLogin(ZonedDateTime lastLogin) {
             this.lastLogin = lastLogin;
             return this;
         }
 
-        public ExtendedUserDataModelBuilder withLastModified(String lastModified) {
+        public ExtendedUserDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

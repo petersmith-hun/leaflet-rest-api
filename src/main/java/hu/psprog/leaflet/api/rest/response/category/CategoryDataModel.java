@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response model for categories.
  *
@@ -17,8 +19,8 @@ public class CategoryDataModel extends BaseBodyDataModel {
     private long id;
     private String title;
     private String description;
-    private String created;
-    private String lastModified;
+    private ZonedDateTime created;
+    private ZonedDateTime lastModified;
     private boolean enabled;
 
     public long getId() {
@@ -33,11 +35,11 @@ public class CategoryDataModel extends BaseBodyDataModel {
         return description;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -98,8 +100,8 @@ public class CategoryDataModel extends BaseBodyDataModel {
         private long id;
         private String title;
         private String description;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private boolean enabled;
 
         private CategoryDataModelBuilder() {
@@ -120,12 +122,12 @@ public class CategoryDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public CategoryDataModelBuilder withCreated(String created) {
+        public CategoryDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public CategoryDataModelBuilder withLastModified(String lastModified) {
+        public CategoryDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

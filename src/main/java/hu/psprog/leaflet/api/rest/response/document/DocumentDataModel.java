@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response data model for documents.
  *
@@ -20,7 +22,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
     protected String link;
     protected String rawContent;
     protected UserDataModel user;
-    protected String created;
+    protected ZonedDateTime created;
     protected String locale;
 
     public long getId() {
@@ -43,7 +45,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
         return user;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
@@ -106,7 +108,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
         protected String link;
         protected String rawContent;
         protected UserDataModel user;
-        protected String created;
+        protected ZonedDateTime created;
         protected String locale;
 
         private DocumentDataModelBuilder() {
@@ -137,7 +139,7 @@ public class DocumentDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public DocumentDataModelBuilder withCreated(String created) {
+        public DocumentDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }

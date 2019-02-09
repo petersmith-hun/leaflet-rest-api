@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Extended response data model for comments.
  *
@@ -72,8 +74,8 @@ public class ExtendedCommentDataModel extends CommentDataModel {
         private Long id;
         private UserDataModel owner;
         private String content;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private boolean deleted;
 
         private ExtendedCommentDataModelBuilder() {
@@ -104,12 +106,12 @@ public class ExtendedCommentDataModel extends CommentDataModel {
             return this;
         }
 
-        public ExtendedCommentDataModelBuilder withCreated(String created) {
+        public ExtendedCommentDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public ExtendedCommentDataModelBuilder withLastModified(String lastModified) {
+        public ExtendedCommentDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

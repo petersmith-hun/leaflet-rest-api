@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -93,8 +94,8 @@ public class EditEntryDataModel extends EntryDataModel {
         private UserDataModel user;
         private List<TagDataModel> tags;
         private CategoryDataModel category;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private List<FileDataModel> attachments;
         private String rawContent;
         private boolean enabled;
@@ -154,12 +155,12 @@ public class EditEntryDataModel extends EntryDataModel {
             return this;
         }
 
-        public EditEntryDataModelBuilder withCreated(String created) {
+        public EditEntryDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public EditEntryDataModelBuilder withLastModified(String lastModified) {
+        public EditEntryDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response data model for tags.
  *
@@ -16,8 +18,8 @@ public class TagDataModel extends BaseBodyDataModel {
 
     private long id;
     private String name;
-    private String created;
-    private String lastModified;
+    private ZonedDateTime created;
+    private ZonedDateTime lastModified;
     private boolean enabled;
 
     public long getId() {
@@ -28,11 +30,11 @@ public class TagDataModel extends BaseBodyDataModel {
         return name;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -86,8 +88,8 @@ public class TagDataModel extends BaseBodyDataModel {
     public static final class TagDataModelBuilder {
         private long id;
         private String name;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private boolean enabled;
 
         private TagDataModelBuilder() {
@@ -103,12 +105,12 @@ public class TagDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public TagDataModelBuilder withCreated(String created) {
+        public TagDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public TagDataModelBuilder withLastModified(String lastModified) {
+        public TagDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

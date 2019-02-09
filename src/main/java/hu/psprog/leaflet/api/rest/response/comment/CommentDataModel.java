@@ -6,6 +6,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response data model for comments.
  * 
@@ -16,8 +18,8 @@ public class CommentDataModel extends BaseBodyDataModel {
     private Long id;
     private UserDataModel owner;
     private String content;
-    private String created;
-    private String lastModified;
+    private ZonedDateTime created;
+    private ZonedDateTime lastModified;
     private boolean deleted;
 
     public Long getId() {
@@ -44,19 +46,19 @@ public class CommentDataModel extends BaseBodyDataModel {
         this.content = content;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(ZonedDateTime created) {
         this.created = created;
     }
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
-    public void setLastModified(String lastModified) {
+    public void setLastModified(ZonedDateTime lastModified) {
         this.lastModified = lastModified;
     }
 
@@ -118,8 +120,8 @@ public class CommentDataModel extends BaseBodyDataModel {
         private Long id;
         private UserDataModel owner;
         private String content;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private boolean deleted;
 
         private CommentDataModelBuilder() {
@@ -140,12 +142,12 @@ public class CommentDataModel extends BaseBodyDataModel {
             return this;
         }
 
-        public CommentDataModelBuilder withCreated(String created) {
+        public CommentDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public CommentDataModelBuilder withLastModified(String lastModified) {
+        public CommentDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }

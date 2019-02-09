@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
+
 /**
  * Response data model for extended front-end route information.
  *
@@ -16,8 +18,8 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
     private long id;
     private int sequenceNumber;
     private String type;
-    private String created;
-    private String lastModified;
+    private ZonedDateTime created;
+    private ZonedDateTime lastModified;
     private boolean enabled;
 
     public long getId() {
@@ -32,11 +34,11 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
         return type;
     }
 
-    public String getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -105,8 +107,8 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
         private long id;
         private int sequenceNumber;
         private String type;
-        private String created;
-        private String lastModified;
+        private ZonedDateTime created;
+        private ZonedDateTime lastModified;
         private boolean enabled;
 
         private ExtendedFrontEndRouteDataModelBuilder() {
@@ -127,12 +129,12 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
             return this;
         }
 
-        public ExtendedFrontEndRouteDataModelBuilder withCreated(String created) {
+        public ExtendedFrontEndRouteDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public ExtendedFrontEndRouteDataModelBuilder withLastModified(String lastModified) {
+        public ExtendedFrontEndRouteDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }
