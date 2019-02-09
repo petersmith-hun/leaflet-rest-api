@@ -9,6 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
     }
 
     @Override
-    public String getLastModified() {
+    public ZonedDateTime getLastModified() {
         return lastModified;
     }
 
@@ -82,10 +83,10 @@ public class ExtendedEntryDataModel extends EntryDataModel {
         private UserDataModel user;
         private List<TagDataModel> tags;
         private CategoryDataModel category;
-        private String created;
+        private ZonedDateTime created;
         private List<FileDataModel> attachments;
         private String rawContent;
-        private String lastModified;
+        private ZonedDateTime lastModified;
         private String locale;
 
         private ExtendedEntryDataModelBuilder() {
@@ -131,12 +132,12 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             return this;
         }
 
-        public ExtendedEntryDataModelBuilder withCreated(String created) {
+        public ExtendedEntryDataModelBuilder withCreated(ZonedDateTime created) {
             this.created = created;
             return this;
         }
 
-        public ExtendedEntryDataModelBuilder withLastModified(String lastModified) {
+        public ExtendedEntryDataModelBuilder withLastModified(ZonedDateTime lastModified) {
             this.lastModified = lastModified;
             return this;
         }
