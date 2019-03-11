@@ -30,6 +30,9 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
     @NotEmpty
     private String type;
 
+    @NotEmpty
+    private String authRequirement;
+
     public String getRouteId() {
         return routeId;
     }
@@ -70,6 +73,14 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
         this.type = type;
     }
 
+    public String getAuthRequirement() {
+        return authRequirement;
+    }
+
+    public void setAuthRequirement(String authRequirement) {
+        this.authRequirement = authRequirement;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -84,6 +95,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
                 .append(name, that.name)
                 .append(url, that.url)
                 .append(type, that.type)
+                .append(authRequirement, that.authRequirement)
                 .isEquals();
     }
 
@@ -95,6 +107,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
                 .append(url)
                 .append(sequenceNumber)
                 .append(type)
+                .append(authRequirement)
                 .toHashCode();
     }
 
@@ -106,6 +119,7 @@ public class FrontEndRouteUpdateRequestModel implements Serializable {
                 .append("url", url)
                 .append("sequenceNumber", sequenceNumber)
                 .append("type", type)
+                .append("authRequirement", authRequirement)
                 .toString();
     }
 }

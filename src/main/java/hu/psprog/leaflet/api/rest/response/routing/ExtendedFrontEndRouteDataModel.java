@@ -90,6 +90,7 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
                 .append("name", name)
                 .append("url", url)
                 .append("routeId", routeId)
+                .append("authRequirement", authRequirement)
                 .toString();
     }
 
@@ -110,6 +111,7 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
         private ZonedDateTime created;
         private ZonedDateTime lastModified;
         private boolean enabled;
+        private String authRequirement;
 
         private ExtendedFrontEndRouteDataModelBuilder() {
         }
@@ -159,6 +161,11 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
             return this;
         }
 
+        public ExtendedFrontEndRouteDataModelBuilder withAuthRequirement(String authRequirement) {
+            this.authRequirement = authRequirement;
+            return this;
+        }
+
         public ExtendedFrontEndRouteDataModel build() {
             ExtendedFrontEndRouteDataModel extendedFrontEndRouteDataModel = new ExtendedFrontEndRouteDataModel();
             extendedFrontEndRouteDataModel.routeId = this.routeId;
@@ -170,6 +177,7 @@ public class ExtendedFrontEndRouteDataModel extends FrontEndRouteDataModel {
             extendedFrontEndRouteDataModel.sequenceNumber = this.sequenceNumber;
             extendedFrontEndRouteDataModel.created = this.created;
             extendedFrontEndRouteDataModel.enabled = this.enabled;
+            extendedFrontEndRouteDataModel.authRequirement = this.authRequirement;
             return extendedFrontEndRouteDataModel;
         }
     }
