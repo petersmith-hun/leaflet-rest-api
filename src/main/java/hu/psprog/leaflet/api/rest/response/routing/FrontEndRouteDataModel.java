@@ -17,6 +17,7 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
     protected String routeId;
     protected String name;
     protected String url;
+    protected String authRequirement;
 
     public String getRouteId() {
         return routeId;
@@ -28,6 +29,10 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getAuthRequirement() {
+        return authRequirement;
     }
 
     @Override
@@ -42,6 +47,7 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
                 .append(routeId, that.routeId)
                 .append(name, that.name)
                 .append(url, that.url)
+                .append(authRequirement, that.authRequirement)
                 .isEquals();
     }
 
@@ -51,6 +57,7 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
                 .append(routeId)
                 .append(name)
                 .append(url)
+                .append(authRequirement)
                 .toHashCode();
     }
 
@@ -60,6 +67,7 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
                 .append("routeId", routeId)
                 .append("name", name)
                 .append("url", url)
+                .append("authRequirement", authRequirement)
                 .toString();
     }
 
@@ -74,6 +82,7 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
         private String routeId;
         private String name;
         private String url;
+        private String authRequirement;
 
         private FrontEndRouteDataModelBuilder() {
         }
@@ -93,11 +102,17 @@ public class FrontEndRouteDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public FrontEndRouteDataModelBuilder withAuthRequirement(String authRequirement) {
+            this.authRequirement = authRequirement;
+            return this;
+        }
+
         public FrontEndRouteDataModel build() {
             FrontEndRouteDataModel frontEndRouteDataModel = new FrontEndRouteDataModel();
             frontEndRouteDataModel.routeId = this.routeId;
             frontEndRouteDataModel.name = this.name;
             frontEndRouteDataModel.url = this.url;
+            frontEndRouteDataModel.authRequirement = this.authRequirement;
             return frontEndRouteDataModel;
         }
     }
