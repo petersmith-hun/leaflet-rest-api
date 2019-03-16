@@ -20,6 +20,7 @@ public class CommentDataModel extends BaseBodyDataModel {
     private String content;
     private ZonedDateTime created;
     private ZonedDateTime lastModified;
+    private boolean enabled;
     private boolean deleted;
 
     public Long getId() {
@@ -62,6 +63,14 @@ public class CommentDataModel extends BaseBodyDataModel {
         this.lastModified = lastModified;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public boolean isDeleted() {
         return deleted;
     }
@@ -85,6 +94,7 @@ public class CommentDataModel extends BaseBodyDataModel {
                 .append(content, that.content)
                 .append(created, that.created)
                 .append(lastModified, that.lastModified)
+                .append(enabled, that.enabled)
                 .isEquals();
     }
 
@@ -96,6 +106,7 @@ public class CommentDataModel extends BaseBodyDataModel {
                 .append(content)
                 .append(created)
                 .append(lastModified)
+                .append(enabled)
                 .append(deleted)
                 .toHashCode();
     }
@@ -108,6 +119,7 @@ public class CommentDataModel extends BaseBodyDataModel {
                 .append("content", content)
                 .append("created", created)
                 .append("lastModified", lastModified)
+                .append("enabled", enabled)
                 .append("deleted", deleted)
                 .toString();
     }
@@ -122,6 +134,7 @@ public class CommentDataModel extends BaseBodyDataModel {
         private String content;
         private ZonedDateTime created;
         private ZonedDateTime lastModified;
+        private boolean enabled;
         private boolean deleted;
 
         private CommentDataModelBuilder() {
@@ -152,6 +165,11 @@ public class CommentDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public CommentDataModelBuilder withEnabled(boolean enabled) {
+            this.enabled = enabled;
+            return this;
+        }
+
         public CommentDataModelBuilder withDeleted(boolean deleted) {
             this.deleted = deleted;
             return this;
@@ -164,6 +182,7 @@ public class CommentDataModel extends BaseBodyDataModel {
             commentDataModel.setContent(content);
             commentDataModel.setCreated(created);
             commentDataModel.setLastModified(lastModified);
+            commentDataModel.setEnabled(enabled);
             commentDataModel.setDeleted(deleted);
             return commentDataModel;
         }
