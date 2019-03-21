@@ -15,12 +15,7 @@ import java.time.ZonedDateTime;
  */
 public class ExtendedCommentDataModel extends CommentDataModel {
 
-    private boolean enabled;
     private EntryDataModel associatedEntry;
-
-    public boolean isEnabled() {
-        return enabled;
-    }
 
     public EntryDataModel getAssociatedEntry() {
         return associatedEntry;
@@ -36,7 +31,6 @@ public class ExtendedCommentDataModel extends CommentDataModel {
 
         return new EqualsBuilder()
                 .appendSuper(super.equals(o))
-                .append(enabled, that.enabled)
                 .append(associatedEntry, that.associatedEntry)
                 .isEquals();
     }
@@ -45,7 +39,6 @@ public class ExtendedCommentDataModel extends CommentDataModel {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .appendSuper(super.hashCode())
-                .append(enabled)
                 .append(associatedEntry)
                 .toHashCode();
     }
@@ -53,13 +46,13 @@ public class ExtendedCommentDataModel extends CommentDataModel {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("enabled", enabled)
                 .append("associatedEntry", associatedEntry)
                 .append("id", getId())
                 .append("owner", getOwner())
                 .append("content", getContent())
                 .append("created", getCreated())
                 .append("lastModified", getLastModified())
+                .append("enabled", isDeleted())
                 .append("deleted", isDeleted())
                 .toString();
     }
@@ -129,7 +122,7 @@ public class ExtendedCommentDataModel extends CommentDataModel {
             extendedCommentDataModel.setCreated(created);
             extendedCommentDataModel.setLastModified(lastModified);
             extendedCommentDataModel.setDeleted(deleted);
-            extendedCommentDataModel.enabled = this.enabled;
+            extendedCommentDataModel.setEnabled(enabled);
             extendedCommentDataModel.associatedEntry = this.associatedEntry;
             return extendedCommentDataModel;
         }
