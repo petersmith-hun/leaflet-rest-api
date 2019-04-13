@@ -1,7 +1,8 @@
 open module leaflet.component.rest.backend.api {
     requires java.validation;
-    requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.dataformat.xml;
     requires org.apache.commons.lang3;
     requires org.hibernate.validator;
     requires spring.web;
@@ -28,6 +29,7 @@ open module leaflet.component.rest.backend.api {
     exports hu.psprog.leaflet.api.rest.response.entry;
     exports hu.psprog.leaflet.api.rest.response.file;
     exports hu.psprog.leaflet.api.rest.response.routing;
+    exports hu.psprog.leaflet.api.rest.response.sitemap;
     exports hu.psprog.leaflet.api.rest.response.tag;
     exports hu.psprog.leaflet.api.rest.response.user;
 }
