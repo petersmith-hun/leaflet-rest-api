@@ -16,7 +16,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonDeserialize(builder = SitemapLocationItem.SitemapLocationItemBuilder.class)
 public class SitemapLocationItem {
 
-    @JacksonXmlProperty(localName = "loc")
+    @JacksonXmlProperty(localName = "loc", namespace = "http://www.sitemaps.org/schemas/sitemap/0.9")
     @JsonProperty("location")
     private String location;
 
