@@ -32,12 +32,14 @@ import java.util.List;
  * @see SitemapLocationItem
  * @author Peter Smith
  */
-@JacksonXmlRootElement(localName = "urlset", namespace = "http://www.sitemaps.org/schemas/sitemap/0.9")
+@JacksonXmlRootElement(localName = "urlset", namespace = Sitemap.SITEMAP_XML_NAMESPACE)
 @JsonDeserialize(builder = Sitemap.SitemapBuilder.class)
 public class Sitemap extends BaseBodyDataModel {
 
+    static final String SITEMAP_XML_NAMESPACE = "http://www.sitemaps.org/schemas/sitemap/0.9";
+
     @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = "url", namespace = "http://www.sitemaps.org/schemas/sitemap/0.9")
+    @JacksonXmlProperty(localName = "url", namespace = SITEMAP_XML_NAMESPACE)
     private List<SitemapLocationItem> sitemapLocationItemList;
 
     public List<SitemapLocationItem> getSitemapLocationItemList() {

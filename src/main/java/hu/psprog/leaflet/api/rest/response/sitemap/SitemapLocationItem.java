@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import static hu.psprog.leaflet.api.rest.response.sitemap.Sitemap.SITEMAP_XML_NAMESPACE;
+
 /**
  * Sitemap location item model.
  *
@@ -16,7 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 @JsonDeserialize(builder = SitemapLocationItem.SitemapLocationItemBuilder.class)
 public class SitemapLocationItem {
 
-    @JacksonXmlProperty(localName = "loc", namespace = "http://www.sitemaps.org/schemas/sitemap/0.9")
+    @JacksonXmlProperty(localName = "loc", namespace = SITEMAP_XML_NAMESPACE)
     @JsonProperty("location")
     private String location;
 
