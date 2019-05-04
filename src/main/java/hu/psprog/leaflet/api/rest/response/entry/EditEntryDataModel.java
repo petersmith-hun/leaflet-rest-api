@@ -77,6 +77,7 @@ public class EditEntryDataModel extends EntryDataModel {
                 .append("category", category)
                 .append("created", created)
                 .append("lastModified", lastModified)
+                .append("published", published)
                 .append("attachments", attachments)
                 .append("locale", locale)
                 .toString();
@@ -96,6 +97,7 @@ public class EditEntryDataModel extends EntryDataModel {
         private CategoryDataModel category;
         private ZonedDateTime created;
         private ZonedDateTime lastModified;
+        private ZonedDateTime published;
         private List<FileDataModel> attachments;
         private String rawContent;
         private boolean enabled;
@@ -165,6 +167,11 @@ public class EditEntryDataModel extends EntryDataModel {
             return this;
         }
 
+        public EditEntryDataModelBuilder withPublished(ZonedDateTime published) {
+            this.published = published;
+            return this;
+        }
+
         public EditEntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
             this.attachments = attachments;
             return this;
@@ -191,6 +198,7 @@ public class EditEntryDataModel extends EntryDataModel {
             editEntryDataModel.entryStatus = this.entryStatus;
             editEntryDataModel.tags = this.tags;
             editEntryDataModel.locale = this.locale;
+            editEntryDataModel.published = this.published;
             return editEntryDataModel;
         }
     }
