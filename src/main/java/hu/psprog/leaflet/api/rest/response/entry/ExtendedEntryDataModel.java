@@ -66,6 +66,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
                 .append("category", category)
                 .append("created", created)
                 .append("lastModified", lastModified)
+                .append("published", published)
                 .append("attachments", attachments)
                 .append("locale", locale)
                 .toString();
@@ -87,6 +88,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
         private List<FileDataModel> attachments;
         private String rawContent;
         private ZonedDateTime lastModified;
+        private ZonedDateTime published;
         private String locale;
 
         private ExtendedEntryDataModelBuilder() {
@@ -142,6 +144,11 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             return this;
         }
 
+        public ExtendedEntryDataModelBuilder withPublished(ZonedDateTime published) {
+            this.published = published;
+            return this;
+        }
+
         public ExtendedEntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
             this.attachments = attachments;
             return this;
@@ -166,6 +173,7 @@ public class ExtendedEntryDataModel extends EntryDataModel {
             extendedEntryDataModel.attachments = this.attachments;
             extendedEntryDataModel.tags = this.tags;
             extendedEntryDataModel.locale = this.locale;
+            extendedEntryDataModel.published = this.published;
             return extendedEntryDataModel;
         }
     }

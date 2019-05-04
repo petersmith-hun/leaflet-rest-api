@@ -1,5 +1,6 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
@@ -32,6 +33,9 @@ public class EntryDataModel extends BaseBodyDataModel {
     protected ZonedDateTime lastModified;
     protected List<FileDataModel> attachments;
     protected String locale;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    protected ZonedDateTime published;
 
     public long getId() {
         return id;
@@ -69,6 +73,10 @@ public class EntryDataModel extends BaseBodyDataModel {
         return lastModified;
     }
 
+    public ZonedDateTime getPublished() {
+        return published;
+    }
+
     public List<FileDataModel> getAttachments() {
         return attachments;
     }
@@ -95,6 +103,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append(category, that.category)
                 .append(created, that.created)
                 .append(lastModified, that.lastModified)
+                .append(published, that.published)
                 .append(attachments, that.attachments)
                 .append(locale, that.locale)
                 .isEquals();
@@ -112,6 +121,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append(category)
                 .append(created)
                 .append(lastModified)
+                .append(published)
                 .append(attachments)
                 .append(locale)
                 .toHashCode();
@@ -129,6 +139,7 @@ public class EntryDataModel extends BaseBodyDataModel {
                 .append("category", category)
                 .append("created", created)
                 .append("lastModified", lastModified)
+                .append("published", published)
                 .append("attachments", attachments)
                 .append("locale", locale)
                 .toString();
@@ -148,6 +159,7 @@ public class EntryDataModel extends BaseBodyDataModel {
         private CategoryDataModel category;
         private ZonedDateTime created;
         private ZonedDateTime lastModified;
+        private ZonedDateTime published;
         private List<FileDataModel> attachments;
         private String locale;
 
@@ -199,6 +211,11 @@ public class EntryDataModel extends BaseBodyDataModel {
             return this;
         }
 
+        public EntryDataModelBuilder withPublished(ZonedDateTime published) {
+            this.published = published;
+            return this;
+        }
+
         public EntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
             this.attachments = attachments;
             return this;
@@ -218,6 +235,7 @@ public class EntryDataModel extends BaseBodyDataModel {
             entryDataModel.category = this.category;
             entryDataModel.title = this.title;
             entryDataModel.created = this.created;
+            entryDataModel.published = this.published;
             entryDataModel.attachments = this.attachments;
             entryDataModel.id = this.id;
             entryDataModel.tags = this.tags;
