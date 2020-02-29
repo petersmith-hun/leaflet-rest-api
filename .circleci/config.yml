@@ -1,6 +1,8 @@
-version: 2
+version: 2.1
+orbs:
+  jira: circleci/jira@1.1.2
 jobs:
-  maven/build:
+  build_leaflet-rest-api:
     docker:
       - image: cimg/openjdk:11.0.6
     steps:
@@ -9,8 +11,16 @@ jobs:
           command: mvn clean deploy -s .circleci/settings.xml
           name: Build and upload to Leaflet Internal repository
 workflows:
-  maven_build:
+  build:
     jobs:
-      - maven/build:
+      - build_leaflet-rest-api:
          context: leaflet_ci
-  version: 2
+         filters:
+           branches:
+             only:
+               - master
+         post-steps:
+           - jira/notify:
+               environment_type: production
+               job_type: build
+  version: 2.1
