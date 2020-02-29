@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  maven/build:
+    docker:
+      - image: cimg/openjdk:11.0.6
+    steps:
+      - checkout
+      - run:
+          command: mvn clean deploy -s .circleci/settings.xml
+          name: Build and upload to Leaflet Internal repository
+workflows:
+  maven_build:
+    jobs:
+      - maven/build:
+         context: leaflet_ci
+  version: 2
