@@ -17,4 +17,13 @@ public interface OrderBy {
         CREATED,
         PUBLISHED
     }
+
+    /**
+     * Supported sort fields for comments.
+     */
+    enum Comment {
+
+        ID,
+        CREATED
+    }
 }
