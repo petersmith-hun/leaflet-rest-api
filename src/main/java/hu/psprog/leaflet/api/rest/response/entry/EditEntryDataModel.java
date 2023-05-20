@@ -1,13 +1,13 @@
 package hu.psprog.leaflet.api.rest.response.entry;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import hu.psprog.leaflet.api.rest.response.category.CategoryDataModel;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import hu.psprog.leaflet.api.rest.response.file.FileDataModel;
 import hu.psprog.leaflet.api.rest.response.tag.TagDataModel;
 import hu.psprog.leaflet.api.rest.response.user.UserDataModel;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.Builder;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -17,189 +17,22 @@ import java.util.List;
  *
  * @author Peter Smith
  */
-@JsonDeserialize(builder = EditEntryDataModel.EditEntryDataModelBuilder.class)
-public class EditEntryDataModel extends EntryDataModel {
-
-    private String rawContent;
-    private boolean enabled;
-    private String entryStatus;
-
-    public String getRawContent() {
-        return rawContent;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public String getEntryStatus() {
-        return entryStatus;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof EditEntryDataModel)) return false;
-
-        EditEntryDataModel that = (EditEntryDataModel) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(enabled, that.enabled)
-                .append(rawContent, that.rawContent)
-                .append(entryStatus, that.entryStatus)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(rawContent)
-                .append(enabled)
-                .append(entryStatus)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("rawContent", rawContent)
-                .append("enabled", enabled)
-                .append("entryStatus", entryStatus)
-                .append("id", id)
-                .append("title", title)
-                .append("link", link)
-                .append("prologue", prologue)
-                .append("user", user)
-                .append("tags", tags)
-                .append("category", category)
-                .append("created", created)
-                .append("lastModified", lastModified)
-                .append("published", published)
-                .append("attachments", attachments)
-                .append("locale", locale)
-                .toString();
-    }
-
-    public static EditEntryDataModelBuilder getExtendedBuilder() {
-        return new EditEntryDataModelBuilder();
-    }
-
-    public static final class EditEntryDataModelBuilder {
-        private long id;
-        private String title;
-        private String link;
-        private String prologue;
-        private UserDataModel user;
-        private List<TagDataModel> tags;
-        private CategoryDataModel category;
-        private ZonedDateTime created;
-        private ZonedDateTime lastModified;
-        private ZonedDateTime published;
-        private List<FileDataModel> attachments;
-        private String rawContent;
-        private boolean enabled;
-        private String entryStatus;
-        private String locale;
-
-        private EditEntryDataModelBuilder() {
-        }
-
-        public EditEntryDataModelBuilder withRawContent(String rawContent) {
-            this.rawContent = rawContent;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withEnabled(boolean enabled) {
-            this.enabled = enabled;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withEntryStatus(String entryStatus) {
-            this.entryStatus = entryStatus;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withId(long id) {
-            this.id = id;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withLink(String link) {
-            this.link = link;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withPrologue(String prologue) {
-            this.prologue = prologue;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withUser(UserDataModel user) {
-            this.user = user;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withTags(List<TagDataModel> tags) {
-            this.tags = tags;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withCategory(CategoryDataModel category) {
-            this.category = category;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withCreated(ZonedDateTime created) {
-            this.created = created;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withLastModified(ZonedDateTime lastModified) {
-            this.lastModified = lastModified;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withPublished(ZonedDateTime published) {
-            this.published = published;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withAttachments(List<FileDataModel> attachments) {
-            this.attachments = attachments;
-            return this;
-        }
-
-        public EditEntryDataModelBuilder withLocale(String locale) {
-            this.locale = locale;
-            return this;
-        }
-
-        public EditEntryDataModel build() {
-            EditEntryDataModel editEntryDataModel = new EditEntryDataModel();
-            editEntryDataModel.link = this.link;
-            editEntryDataModel.enabled = this.enabled;
-            editEntryDataModel.prologue = this.prologue;
-            editEntryDataModel.lastModified = this.lastModified;
-            editEntryDataModel.rawContent = this.rawContent;
-            editEntryDataModel.id = this.id;
-            editEntryDataModel.user = this.user;
-            editEntryDataModel.category = this.category;
-            editEntryDataModel.title = this.title;
-            editEntryDataModel.created = this.created;
-            editEntryDataModel.attachments = this.attachments;
-            editEntryDataModel.entryStatus = this.entryStatus;
-            editEntryDataModel.tags = this.tags;
-            editEntryDataModel.locale = this.locale;
-            editEntryDataModel.published = this.published;
-            return editEntryDataModel;
-        }
-    }
-}
+@Builder(setterPrefix = "with", builderMethodName = "getBuilder")
+@Jacksonized
+public record EditEntryDataModel(
+        long id,
+        String title,
+        String link,
+        String prologue,
+        UserDataModel user,
+        List<TagDataModel> tags,
+        CategoryDataModel category,
+        ZonedDateTime created,
+        ZonedDateTime lastModified,
+        List<FileDataModel> attachments,
+        String locale,
+        @JsonInclude(JsonInclude.Include.NON_NULL) ZonedDateTime published,
+        String rawContent,
+        boolean enabled,
+        String entryStatus
+) implements BaseBodyDataModel { }

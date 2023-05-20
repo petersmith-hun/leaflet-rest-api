@@ -3,8 +3,8 @@ package hu.psprog.leaflet.api.rest.request.validator;
 import hu.psprog.leaflet.api.rest.request.comment.CommentCreateRequestModel;
 import org.apache.commons.lang3.StringUtils;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Objects;
 
 /**

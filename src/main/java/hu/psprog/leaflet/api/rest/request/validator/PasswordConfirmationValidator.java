@@ -2,8 +2,8 @@ package hu.psprog.leaflet.api.rest.request.validator;
 
 import hu.psprog.leaflet.api.rest.request.user.UserPasswordRequestModel;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Checks is password for new user and its confirmation is the same.
