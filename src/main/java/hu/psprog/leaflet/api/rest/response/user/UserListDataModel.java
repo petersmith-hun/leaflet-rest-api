@@ -1,12 +1,9 @@
 package hu.psprog.leaflet.api.rest.response.user;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import lombok.Builder;
+import lombok.extern.jackson.Jacksonized;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,67 +11,8 @@ import java.util.List;
  *
  * @author Peter Smith
  */
-@JsonDeserialize(builder = UserListDataModel.UserListDataModelBuilder.class)
-public class UserListDataModel extends BaseBodyDataModel {
-
-    private List<ExtendedUserDataModel> users;
-
-    public List<ExtendedUserDataModel> getUsers() {
-        return users;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof UserListDataModel)) return false;
-
-        UserListDataModel that = (UserListDataModel) o;
-
-        return new EqualsBuilder()
-                .append(users, that.users)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(users)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("users", users)
-                .toString();
-    }
-
-    public static UserListDataModelBuilder getBuilder() {
-        return new UserListDataModelBuilder();
-    }
-
-    public static final class UserListDataModelBuilder {
-        private List<ExtendedUserDataModel> users;
-
-        private UserListDataModelBuilder() {
-            users = new LinkedList<>();
-        }
-
-        public UserListDataModelBuilder withItem(ExtendedUserDataModel user) {
-            this.users.add(user);
-            return this;
-        }
-
-        public UserListDataModelBuilder withUsers(List<ExtendedUserDataModel> users) {
-            this.users = users;
-            return this;
-        }
-
-        public UserListDataModel build() {
-            UserListDataModel userListDataModel = new UserListDataModel();
-            userListDataModel.users = users;
-            return userListDataModel;
-        }
-    }
-}
+@Builder(setterPrefix = "with", builderMethodName = "getBuilder")
+@Jacksonized
+public record UserListDataModel(
+        List<ExtendedUserDataModel> users
+) implements BaseBodyDataModel { }

@@ -1,49 +1,24 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * Request model for password change requests.
  *
  * @author Peter Smith
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class PasswordChangeRequestModel extends UserPasswordRequestModel {
 
     @NotNull
     @NotEmpty
+    @ToString.Exclude
     private String currentPassword;
 
-    public String getCurrentPassword() {
-        return currentPassword;
-    }
-
-    public void setCurrentPassword(String currentPassword) {
-        this.currentPassword = currentPassword;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PasswordChangeRequestModel that = (PasswordChangeRequestModel) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(currentPassword, that.currentPassword)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(currentPassword)
-                .toHashCode();
-    }
 }

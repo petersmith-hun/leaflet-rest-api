@@ -1,11 +1,11 @@
 package hu.psprog.leaflet.api.rest.request.user;
 
 import hu.psprog.leaflet.api.rest.request.validator.PasswordConfirmCheck;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.ToString;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -13,52 +13,18 @@ import java.io.Serializable;
  *
  * @author Peter Smith
  */
+@Data
 @PasswordConfirmCheck
 public class UserPasswordRequestModel implements Serializable {
 
     @NotNull
     @NotEmpty
+    @ToString.Exclude
     private String password;
 
     @NotNull
     @NotEmpty
+    @ToString.Exclude
     private String passwordConfirmation;
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPasswordConfirmation() {
-        return passwordConfirmation;
-    }
-
-    public void setPasswordConfirmation(String passwordConfirmation) {
-        this.passwordConfirmation = passwordConfirmation;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserPasswordRequestModel that = (UserPasswordRequestModel) o;
-
-        return new EqualsBuilder()
-                .append(password, that.password)
-                .append(passwordConfirmation, that.passwordConfirmation)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(password)
-                .append(passwordConfirmation)
-                .toHashCode();
-    }
 }

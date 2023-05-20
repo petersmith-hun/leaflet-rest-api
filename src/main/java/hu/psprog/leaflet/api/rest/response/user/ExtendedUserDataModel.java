@@ -1,9 +1,8 @@
 package hu.psprog.leaflet.api.rest.response.user;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
+import lombok.Builder;
+import lombok.extern.jackson.Jacksonized;
 
 import java.time.ZonedDateTime;
 
@@ -12,154 +11,15 @@ import java.time.ZonedDateTime;
  *
  * @author Peter Smith
  */
-@JsonDeserialize(builder = ExtendedUserDataModel.ExtendedUserDataModelBuilder.class)
-public class ExtendedUserDataModel extends UserDataModel {
-
-    private String email;
-    private String role;
-    private String locale;
-    private ZonedDateTime created;
-    private ZonedDateTime lastLogin;
-    private ZonedDateTime lastModified;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public String getLocale() {
-        return locale;
-    }
-
-    public ZonedDateTime getCreated() {
-        return created;
-    }
-
-    public ZonedDateTime getLastLogin() {
-        return lastLogin;
-    }
-
-    public ZonedDateTime getLastModified() {
-        return lastModified;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (!(o instanceof ExtendedUserDataModel)) return false;
-
-        ExtendedUserDataModel that = (ExtendedUserDataModel) o;
-
-        return new EqualsBuilder()
-                .appendSuper(super.equals(o))
-                .append(email, that.email)
-                .append(role, that.role)
-                .append(locale, that.locale)
-                .append(created, that.created)
-                .append(lastLogin, that.lastLogin)
-                .append(lastModified, that.lastModified)
-                .isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .appendSuper(super.hashCode())
-                .append(email)
-                .append(role)
-                .append(locale)
-                .append(created)
-                .append(lastLogin)
-                .append(lastModified)
-                .toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .append("email", email)
-                .append("role", role)
-                .append("locale", locale)
-                .append("created", created)
-                .append("lastLogin", lastLogin)
-                .append("id", id)
-                .append("username", username)
-                .append("lastModified", lastModified)
-                .toString();
-    }
-
-    public static ExtendedUserDataModelBuilder getExtendedBuilder() {
-        return new ExtendedUserDataModelBuilder();
-    }
-
-    public static final class ExtendedUserDataModelBuilder {
-        private long id;
-        private String username;
-        private String email;
-        private String role;
-        private String locale;
-        private ZonedDateTime created;
-        private ZonedDateTime lastLogin;
-        private ZonedDateTime lastModified;
-
-        private ExtendedUserDataModelBuilder() {
-        }
-
-        public ExtendedUserDataModelBuilder withEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withRole(String role) {
-            this.role = role;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withId(long id) {
-            this.id = id;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withLocale(String locale) {
-            this.locale = locale;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withUsername(String username) {
-            this.username = username;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withCreated(ZonedDateTime created) {
-            this.created = created;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withLastLogin(ZonedDateTime lastLogin) {
-            this.lastLogin = lastLogin;
-            return this;
-        }
-
-        public ExtendedUserDataModelBuilder withLastModified(ZonedDateTime lastModified) {
-            this.lastModified = lastModified;
-            return this;
-        }
-
-        public ExtendedUserDataModel build() {
-            ExtendedUserDataModel extendedUserDataModel = new ExtendedUserDataModel();
-            extendedUserDataModel.created = this.created;
-            extendedUserDataModel.lastModified = this.lastModified;
-            extendedUserDataModel.id = this.id;
-            extendedUserDataModel.locale = this.locale;
-            extendedUserDataModel.lastLogin = this.lastLogin;
-            extendedUserDataModel.role = this.role;
-            extendedUserDataModel.email = this.email;
-            extendedUserDataModel.username = this.username;
-            return extendedUserDataModel;
-        }
-    }
-}
+@Builder(setterPrefix = "with", builderMethodName = "getBuilder")
+@Jacksonized
+public record ExtendedUserDataModel(
+        long id,
+        String username,
+        String email,
+        String role,
+        String locale,
+        ZonedDateTime created,
+        ZonedDateTime lastLogin,
+        ZonedDateTime lastModified
+) implements BaseBodyDataModel { }
