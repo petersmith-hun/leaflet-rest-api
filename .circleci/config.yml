@@ -4,15 +4,19 @@ orbs:
   jira: circleci/jira@2.1.0
   jq: circleci/jq@3.0.0
 
-jobs:
-  build_leaflet-rest-api:
+executors:
+  java:
     docker:
       - image: cimg/openjdk:21.0
+
+jobs:
+  build_leaflet-rest-api:
+    executor: java
     steps:
       - checkout
       - run:
           command: mvn clean deploy -s .circleci/settings.xml
-          name: Build and upload to Leaflet Internal repository
+          name: Build and upload to GitHub Packages repository
 
 workflows:
   build:

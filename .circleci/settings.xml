@@ -3,20 +3,20 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>leaflet-internal</id>
-            <username>${LEAFLET_INTERNAL_REPO_USERNAME}</username>
-            <password>${LEAFLET_INTERNAL_REPO_PASSWORD}</password>
+            <id>github-packages</id>
+            <username>${GITHUB_PACKAGES_REPO_USERNAME}</username>
+            <password>${GITHUB_PACKAGES_REPO_PASSWORD}</password>
         </server>
     </servers>
 
     <profiles>
         <profile>
-            <id>use-leaflet-internal-repository</id>
+            <id>use-github-packages-repository</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <altDeploymentRepository>leaflet-internal::default::${LEAFLET_INTERNAL_REPO_HOST}</altDeploymentRepository>
+                <altDeploymentRepository>github-packages::${GITHUB_PACKAGES_REPO_HOST_BASE}/leaflet-rest-api</altDeploymentRepository>
             </properties>
             <repositories>
                 <repository>
@@ -29,8 +29,8 @@
                     </snapshots>
                 </repository>
                 <repository>
-                    <id>leaflet-internal</id>
-                    <name>Leaflet Internal Repository</name>
+                    <id>github-packages</id>
+                    <name>GitHub Packages Repository</name>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -38,7 +38,7 @@
                         <enabled>false</enabled>
                     </snapshots>
                     <layout>default</layout>
-                    <url>${LEAFLET_INTERNAL_REPO_HOST}</url>
+                    <url>${GITHUB_PACKAGES_REPO_HOST_BASE}/*</url>
                 </repository>
             </repositories>
         </profile>
