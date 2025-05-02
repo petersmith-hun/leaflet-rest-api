@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  jira: circleci/jira@2.1.0
-  jq: circleci/jq@3.0.0
+  jira: circleci/jira@2.2.0
+  jq: circleci/jq@3.0.2
 
 executors:
   java:
@@ -22,14 +22,16 @@ workflows:
   build:
     jobs:
       - build_leaflet-rest-api:
-         context: leaflet_ci
-         filters:
-           branches:
-             only:
-               - master
-         post-steps:
-           - jira/notify:
-               pipeline_id: << pipeline.id >>
-               pipeline_number: << pipeline.number >>
+          context:
+            - common-tech
+            - github-packages
+          filters:
+            branches:
+              only:
+                - master
+          post-steps:
+            - jira/notify:
+                pipeline_id: << pipeline.id >>
+                pipeline_number: << pipeline.number >>
 
   version: 2
