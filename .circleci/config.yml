@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   jira: circleci/jira@2.2.0
-  jq: circleci/jq@3.0.2
 
 executors:
   java:
