@@ -1,11 +1,11 @@
 package hu.psprog.leaflet.api.rest.response.sitemap;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import hu.psprog.leaflet.api.rest.response.common.BaseBodyDataModel;
 import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ import java.util.List;
  * @author Peter Smith
  * @see SitemapLocationItem
  */
-@JacksonXmlRootElement(localName = "urlset", namespace = Sitemap.SITEMAP_XML_NAMESPACE)
+@JsonRootName(value = "urlset", namespace = Sitemap.SITEMAP_XML_NAMESPACE)
 @Builder(setterPrefix = "with", builderMethodName = "getBuilder")
 @Jacksonized
 public record Sitemap(

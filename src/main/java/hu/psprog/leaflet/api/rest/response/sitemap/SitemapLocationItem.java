@@ -1,9 +1,9 @@
 package hu.psprog.leaflet.api.rest.response.sitemap;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import lombok.Builder;
 import lombok.extern.jackson.Jacksonized;
+import tools.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import static hu.psprog.leaflet.api.rest.response.sitemap.Sitemap.SITEMAP_XML_NAMESPACE;
 
